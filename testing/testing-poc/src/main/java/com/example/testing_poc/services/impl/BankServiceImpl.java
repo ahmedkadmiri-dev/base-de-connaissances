@@ -4,6 +4,7 @@ import com.example.testing_poc.dtos.*;
 import com.example.testing_poc.entities.Account;
 import com.example.testing_poc.entities.BankTransaction;
 import com.example.testing_poc.entities.Referentiel;
+import com.example.testing_poc.excetions.AccountNotFoundException;
 import com.example.testing_poc.repositories.AccountRepository;
 import com.example.testing_poc.repositories.BankTransactionRepository;
 import com.example.testing_poc.repositories.ReferentielRepository;
@@ -217,9 +218,7 @@ public class BankServiceImpl implements BankService {
 
     private Account findAccount(Long id) {
         return accountRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(
-                        "Compte bancaire introuvable : " + id
-                ));
+                .orElseThrow(() -> new AccountNotFoundException(id));
     }
 
     private Account findAccountForUpdate(Long id) {
