@@ -4,10 +4,10 @@ import com.example.testing_poc.dtos.*;
 import com.example.testing_poc.services.BankService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 /**
@@ -22,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/bank")
 @RequiredArgsConstructor
+@Slf4j
 public class BankController {
 
     private final BankService bankService;
@@ -35,7 +36,7 @@ public class BankController {
     @GetMapping("/referentiels/{type}")
     public ResponseEntity<List<ReferentielDto>> getReferentiels(
             @PathVariable String type) {
-
+        log.info("get référentiel {}", type);
         return ResponseEntity.ok(bankService.getReferentiels(type));
     }
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- ========================================== -->
+    <!-- SPRING BOOT PROPERTIES -->
+    <!-- ========================================== -->
+
+    <!-- Nom de l'application récupéré automatiquement -->
+    <springProperty scope="context"
+                    name="LOG_FILE_NAME"
+                    source="spring.application.name"
+                    defaultValue="application"/>
+
+    <!-- Chemin de stockage des logs -->
+    <springProperty scope="context"
+                    name="LOG_PATH"
+                    source="logging.file.path"
+                    defaultValue="./logs"/>
+
+    <!-- Pattern des logs -->
+    <property name="LOG_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
+
+    <!-- ========================================== -->
+    <!-- CONSOLE APPENDER -->
+    <!-- ========================================== -->
+
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+    <!-- ========================================== -->
+    <!-- ROLLING FILE APPENDER -->
+    <!-- ========================================== -->
+
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- Fichier courant -->
+        <file>${LOG_PATH}/${LOG_FILE_NAME}.log</file>
+
+        <rollingPolicy
+                class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+
+            <!-- Archives datées -->
+            <fileNamePattern>
+                ${LOG_PATH}/archive/${LOG_FILE_NAME}.%d{yyyy-MM-dd}.%i.log.gz
+            </fileNamePattern>
+
+            <!-- Taille maximale par fichier -->
+            <maxFileSize>100MB</maxFileSize>
+
+            <!-- Conservation pendant 30 jours -->
+            <maxHistory>30</maxHistory>
+
+            <!-- Taille totale maximale des archives -->
+            <totalSizeCap>5GB</totalSizeCap>
+
+        </rollingPolicy>
+
+        <encoder>
+            <charset>UTF-8</charset>
+            <pattern>${LOG_PATTERN}</pattern>
+        </encoder>
+
+    </appender>
+
+    <!-- ========================================== -->
+    <!-- ROOT LOGGER -->
+    <!-- ========================================== -->
+
+    <root level="${LOG_LEVEL_ROOT:-INFO}">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+</configuration>
