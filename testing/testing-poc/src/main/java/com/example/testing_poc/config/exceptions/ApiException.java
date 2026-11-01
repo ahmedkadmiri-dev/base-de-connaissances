@@ -1,9 +1,10 @@
-package com.example.testing_poc.config;
+package com.example.testing_poc.config.exceptions;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
-import java.util.HashMap;
+
+import java.util.Collections;
 import java.util.Map;
 
 @Getter
@@ -21,13 +22,13 @@ public class ApiException extends RuntimeException {
     public ApiException(
             HttpStatus status,
             String errorCode,
-            String message,
-            Object[] errorArgs) {
+            Object[] errorArgs,
+            Map<String, Object> details) {
 
-        super(message);
+        super(errorCode);
         this.status = status;
         this.errorCode = errorCode;
         this.errorArgs = errorArgs;
-        this.details = new HashMap<>();
+        this.details = details != null ? details : Collections.emptyMap();
     }
 }

@@ -1,4 +1,4 @@
-package com.example.testing_poc.config;
+package com.example.testing_poc.config.exceptions;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -25,7 +25,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                         ErrorResponse.builder()
                                 .timestamp(LocalDateTime.now())
                                 .errorCode(exception.getErrorCode())
-                                .detail(
+                                .message(
                                         messageSource.getMessage(
                                                 exception.getErrorCode(),
                                                 exception.getErrorArgs(),
@@ -33,6 +33,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                                 LocaleContextHolder.getLocale()
                                         )
                                 )
+                                .details(exception.getDetails())
                                 .build()
                 );
     }

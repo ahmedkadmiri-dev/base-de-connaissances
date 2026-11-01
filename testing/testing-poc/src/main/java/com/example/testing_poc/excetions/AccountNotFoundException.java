@@ -1,7 +1,9 @@
 package com.example.testing_poc.excetions;
 
-import com.example.testing_poc.config.ApiException;
+import com.example.testing_poc.config.exceptions.ApiException;
 import org.springframework.http.HttpStatus;
+
+import java.util.Map;
 
 public class AccountNotFoundException extends ApiException {
 
@@ -9,8 +11,8 @@ public class AccountNotFoundException extends ApiException {
         super(
                 HttpStatus.NOT_FOUND,
                 "ACCOUNT_NOT_FOUND",
-                "Account with id " + id + " not found",
-                new Object[]{id}
+                new Object[]{id},
+                Map.of("accountId", id)
         );
     }
 }
