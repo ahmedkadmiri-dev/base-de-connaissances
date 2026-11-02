@@ -1,5 +1,6 @@
 package com.example.exception;
 
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
@@ -8,7 +9,7 @@ import java.util.Collections;
 import java.util.Map;
 
 @Getter
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
 public class ApiException extends RuntimeException {
 
     private final HttpStatus status;
@@ -18,17 +19,4 @@ public class ApiException extends RuntimeException {
     private final Object[] errorArgs;
 
     private final Map<String, Object> details;
-
-    public ApiException(
-            HttpStatus status,
-            String errorCode,
-            Object[] errorArgs,
-            Map<String, Object> details) {
-
-        super(errorCode);
-        this.status = status;
-        this.errorCode = errorCode;
-        this.errorArgs = errorArgs;
-        this.details = details != null ? details : Collections.emptyMap();
-    }
 }
