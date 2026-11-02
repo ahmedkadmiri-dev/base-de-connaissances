@@ -101,7 +101,7 @@ La langue de réponse dépend de la locale résolue par Spring.
 
 ### 2. Importer la configuration du module
 
-Le module utilise une déclaration manuelle. Il faut importer sa configuration dans l'application consommatrice.
+Créer une classe de configuration dédiée dans le microservice consommateur :
 
 ```java
 @Configuration
@@ -110,22 +110,24 @@ public class ExceptionConfig {
 }
 ```
 
-Ou directement dans la classe principale :
+Cette configuration permet d'enregistrer automatiquement :
 
-```java
-@SpringBootApplication
-@Import(ExceptionConfiguration.class)
-public class TestingPocApplication {
+- `GlobalExceptionHandler`.
+- `ExceptionProperties`.
 
-    public static void main(String[] args) {
-        SpringApplication.run(TestingPocApplication.class, args);
-    }
-}
-```
+Il n'est pas nécessaire de modifier la classe principale de l'application.
 
-### 3. Configurer les propriétés
+### 3. Personnaliser les propriétés (facultatif)
 
-Dans le `application.properties` du microservice :
+Les propriétés disposent de valeurs par défaut dans la bibliothèque :
+
+| Propriété | Valeur par défaut |
+|---|---|
+| `exception.include-stacktrace` | `false` |
+| `exception.include-message` | `false` |
+| `exception.include-exception` | `false` |
+
+Si nécessaire, le microservice consommateur peut les personnaliser dans son `application.properties` :
 
 ```properties
 exception.include-stacktrace=false
