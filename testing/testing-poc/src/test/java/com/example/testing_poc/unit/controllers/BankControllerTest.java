@@ -2,6 +2,7 @@ package com.example.testing_poc.unit.controllers;
 
 import com.example.testing_poc.dtos.AccountDto;
 import com.example.testing_poc.dtos.ReferentielDto;
+import com.example.testing_poc.excetions.AccountNotFoundException;
 import com.example.testing_poc.services.BankService;
 import com.example.testing_poc.controllers.BankController;
 import org.junit.jupiter.api.Test;
@@ -14,8 +15,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.http.MediaType;
-
-import javax.security.auth.login.AccountNotFoundException;
 
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -131,19 +130,30 @@ class BankControllerTest {
         verifyNoInteractions(bankService);
     }
 
+    // Exception Handling Test
+
     @Test
     void shouldReturnNotFound_whenAccountDoesNotExist() throws Exception {
 
+        // Arrange
         Long id = 999L;
 
         when(bankService.getAccount(id))
-                .thenThrow(new AccountNotFoundException("Account not found"));
+                .thenThrow(new AccountNotFoundException(id));
 
-        mockMvc.perform(get("/accounts/{id}", id))
-                .andExpect(status().isNotFound());
+        // Act & Assert
+        mockMvc.perform(get("/bank/accounts/{id}", id)
+                        .header("Accept-Language", "en"))
 
+                // HTTP Status
+                .andExpect(status().isNotFound())
+                // Response Headers
+                .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
+                // Response Body - Error Contract
+                .andExpect(jsonPath("$.errorCode").value("ACCOUNT_NOT_FOUND"));
+
+        // Verify Service Interaction
         verify(bankService).getAccount(id);
     }
-
 
 }

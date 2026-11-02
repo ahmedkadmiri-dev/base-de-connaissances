@@ -1,6 +1,7 @@
 package com.example.testing_poc.config.exceptions;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
 
 @RestControllerAdvice
 @RequiredArgsConstructor
+@Slf4j
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     private final MessageSource messageSource;
@@ -34,6 +36,28 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
                                         )
                                 )
                                 .details(exception.getDetails())
+                                .build()
+                );
+    }
+
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ErrorResponse> handleGlobalException(Exception exception) {
+
+        log.error("Unexpected error occurred", exception);
+
+        return ResponseEntity.internalServerError()
+                .body(
+                        ErrorResponse.builder()
+                                .timestamp(LocalDateTime.now())
+                                .errorCode("INTERNAL_SERVER_ERROR")
+                                .message(
+                                        messageSource.getMessage(
+                                                "INTERNAL_SERVER_ERROR",
+                                                null,
+                                                "INTERNAL_SERVER_ERROR",
+                                                LocaleContextHolder.getLocale()
+                                        )
+                                )
                                 .build()
                 );
     }
