@@ -41,6 +41,8 @@ public class BankServiceImpl implements BankService {
 
     @Override
     public List<ReferentielDto> getReferentiels(String type) {
+        AccountDto accountDto = null;
+        accountDto.getAccountNumber();
         return referentielRepository.findByTypeIgnoreCase(type)
                 .stream()
                 .map(this::toReferentielDto)
