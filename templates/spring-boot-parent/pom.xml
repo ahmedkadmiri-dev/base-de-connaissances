@@ -6,6 +6,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Parent Spring Boot : fournit dependencyManagement + pluginManagement -->
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
@@ -13,62 +14,57 @@
     <relativePath/>
   </parent>
 
+  <!-- Coordonnées de VOTRE parent -->
   <groupId>com.example</groupId>
   <artifactId>spring-boot-parent</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
-
   <name>Spring Boot Parent</name>
-  <description>Parent Maven for reusable Spring Boot modules</description>
 
+  <!-- Liste des modules agrégés -->
+  <modules>
+    <module>spring-boot-exception</module>
+    <module>spring-boot-application</module>
+  </modules>
+
+  <!-- Propriétés centralisées -->
   <properties>
     <java.version>21</java.version>
-    <maven.compiler.release>${java.version}</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
+  <!--
+    Gestion centralisée des dépendances.
+    Le BOM de Spring Boot est DÉJÀ importé par spring-boot-starter-parent :
+    l'importer à nouveau ici est redondant, mais sans effet de bord.
+    Les trois dépendances qui suivent n'ont PAS de <version> → elles sont
+    inutiles (Spring Boot les gère déjà) et doivent être supprimées,
+    sinon Maven échouera à la validation du modèle.
+  -->
   <dependencyManagement>
     <dependencies>
-
-      <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-webmvc</artifactId>
-      </dependency>
-
       <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter</artifactId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>4.1.2</version>
+        <type>pom</type>
+        <scope>import</scope>
       </dependency>
-
-      <dependency>
-        <groupId>org.projectlombok</groupId>
-        <artifactId>lombok</artifactId>
-      </dependency>
-
     </dependencies>
   </dependencyManagement>
 
+  <!-- Configuration des plugins héritée par tous les modules -->
   <build>
     <pluginManagement>
       <plugins>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <configuration>
-            <release>${java.version}</release>
-            <encoding>${project.build.sourceEncoding}</encoding>
-          </configuration>
-        </plugin>
-
-        <plugin>
-          <groupId>org.springframework.boot</groupId>
-          <artifactId>spring-boot-maven-plugin</artifactId>
-        </plugin>
-
+        <!-- Config par défaut héritée, surchargeable par les enfants -->
       </plugins>
     </pluginManagement>
+    <plugins>
+      <!-- Plugins réellement exécutés pour TOUS les modules -->
+      <!-- ⚠ Ne PAS mettre spring-boot-maven-plugin ici :
+           il s'exécuterait aussi sur les librairies. -->
+    </plugins>
   </build>
 
   <distributionManagement>
