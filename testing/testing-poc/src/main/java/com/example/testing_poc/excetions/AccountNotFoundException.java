@@ -1,9 +1,8 @@
 package com.example.testing_poc.excetions;
 
-import com.example.testing_poc.config.exceptions.ApiException;
 import org.springframework.http.HttpStatus;
-
 import java.util.Map;
+import com.example.exception.ApiException;
 
 public class AccountNotFoundException extends ApiException {
 
