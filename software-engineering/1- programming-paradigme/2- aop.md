@@ -1,85 +1,182 @@
-# Aspect-Oriented Programming (AOP)
+# Programmation orientée aspect (POA)
 
-La **Programmation Orientée Aspect (AOP)** est un paradigme qui permet de séparer les préoccupations transversales (*cross-cutting concerns*) de la logique métier.
+## 1. Définition
 
-Exemples de préoccupations transversales :
-- Logging
-- Gestion des transactions
-- Sécurité et autorisation
-- Monitoring et mesure du temps d'exécution
-- Gestion des exceptions
+La programmation orientée aspect (POA ou AOP – Aspect-Oriented Programming) est un paradigme qui permet de séparer les préoccupations transversales (*Cross-Cutting Concerns*) de la logique métier.
 
-## 1. Concepts fondamentaux
+Elle complète la POO en centralisant les traitements communs à plusieurs composants.
 
-| Concept | Description |
-|---|---|
-| Aspect | Classe qui regroupe une préoccupation transversale |
-| Advice | Action exécutée à un moment précis |
-| Join Point | Point d'exécution pouvant être intercepté |
-| Pointcut | Expression qui sélectionne les points d'interception |
-| Target | Objet dont l'exécution est interceptée |
-| Weaving | Mécanisme d'association de l'aspect au code cible |
-| Proxy | Objet intermédiaire qui intercepte les appels vers la cible dans Spring AOP |
+## 2. Préoccupations transversales (Cross-Cutting Concerns)
 
-## 2. Types d'Advice
+Ce sont des fonctionnalités qui concernent plusieurs parties d'une application et qui ne relèvent pas directement de la logique métier.
 
-| Advice | Description |
-|---|---|
-| `@Before` | Exécuté avant la méthode |
-| `@After` | Exécuté après la méthode, qu'elle réussisse ou échoue |
-| `@AfterReturning` | Exécuté après une exécution réussie |
-| `@AfterThrowing` | Exécuté lorsqu'une exception est levée |
-| `@Around` | Encadre l'exécution : avant et après, avec contrôle de `proceed()` |
+Exemples :
+- Logging et traçabilité.
+- Gestion des transactions.
+- Sécurité et contrôle d'accès.
+- Mesure des performances.
+- Gestion des exceptions.
 
-## 3. Exemple avec Spring AOP
+## 3. Concepts fondamentaux
 
-**Dépendance Maven :**
+### 3.1. Aspect
 
-```xml
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-aop</artifactId>
-</dependency>
+Un Aspect est un module qui regroupe un ou plusieurs traitements transversaux.
+
+En Spring AOP, une classe est déclarée comme aspect avec `@Aspect`.
+
+```java
+@Aspect
+@Component
+public class LoggingAspect {
+    // Définition des Pointcuts et Advices
+}
 ```
+
+### 3.2. Join Point (point de jonction)
+
+Un Join Point représente un point potentiel d'exécution du programme auquel un aspect peut intervenir.
+
+En Spring AOP, les Join Points correspondent principalement aux exécutions de méthodes.
+
+Exemple :
+
+```java
+@Service
+public class ClientService {
+
+    public void saveClient() { }
+
+    public void updateClient() { }
+
+    public void deleteClient() { }
+}
+```
+
+Chaque exécution de `saveClient()`, `updateClient()` ou `deleteClient()` constitue un Join Point potentiel.
+
+### 3.3. Pointcut (point de coupe)
+
+Un Pointcut est une expression qui permet de sélectionner les Join Points sur lesquels un aspect doit intervenir.
+
+Exemple : sélectionner toutes les méthodes de `ClientService`.
+
+```java
+@Pointcut("execution(* com.example.service.ClientService.*(..))")
+public void clientServiceMethods() {}
+```
+
+Autres exemples :
+
+```java
+// Méthodes dont le nom commence par save
+@Pointcut("execution(* com.example.service.*.save*(..))")
+public void saveMethods() {}
+
+// Toutes les méthodes du package service et de ses sous-packages
+@Pointcut("execution(* com.example.service..*(..))")
+public void serviceMethods() {}
+```
+
+Expressions courantes :
+- `*` : n'importe quel type ou nom selon sa position.
+- `..` : zéro ou plusieurs paramètres ou sous-packages selon sa position.
+- `execution(...)` : sélectionne les exécutions de méthodes.
+- `within(...)` : sélectionne les méthodes appartenant à un type ou package.
+
+### 3.4. Advice (conseil)
+
+Un Advice définit l'action à exécuter et le moment où elle doit être exécutée lorsqu'un Join Point sélectionné est atteint.
+
+Il existe cinq types principaux d'Advice en Spring AOP :
+
+| Type | Fonctionnement |
+|---|---|
+| `@Before` | Exécute un traitement avant la méthode ciblée. |
+| `@After` | Exécute un traitement après la méthode, qu'elle se termine normalement ou avec une exception. |
+| `@AfterReturning` | Exécute un traitement uniquement après une exécution réussie. Permet de récupérer le résultat retourné. |
+| `@AfterThrowing` | Exécute un traitement lorsqu'une exception est levée. Permet de récupérer l'exception. |
+| `@Around` | Encadre l'exécution de la méthode et permet de contrôler son déroulement, son résultat ou sa durée. |
+
+### 3.5. Target Object (objet cible)
+
+Le Target Object est l'objet métier sur lequel l'aspect intervient.
+
+Exemple :
+
+```java
+@Service
+public class ClientService {
+
+    public void saveClient() {
+        System.out.println("Sauvegarde du client");
+    }
+}
+```
+
+Ici, `ClientService` est le Target Object.
+
+### 3.6. Weaving (tissage)
+
+Le Weaving est le mécanisme qui permet d'associer les aspects au programme afin d'appliquer les traitements transversaux aux points sélectionnés.
+
+Il peut être réalisé :
+- À la compilation (*Compile-Time Weaving*).
+- Après compilation (*Post-Compile-Time Weaving*).
+- Au chargement des classes (*Load-Time Weaving*).
+- À l'exécution via des proxies, comme dans Spring AOP.
+
+### 3.7. Proxy
+
+Un Proxy est un objet intermédiaire qui intercepte les appels vers l'objet cible afin d'appliquer les traitements définis par les aspects.
+
+Spring AOP utilise principalement deux mécanismes :
+- JDK Dynamic Proxy : basé sur les interfaces.
+- CGLIB Proxy : basé sur la création de sous-classes.
+
+Le proxy permet notamment d'appliquer les Advices avant de déléguer l'appel à la méthode de l'objet cible.
+
+## 4. Exemple complet avec Spring AOP
+
+L'objectif est de mesurer automatiquement le temps d'exécution des méthodes du `ClientService`.
 
 **Service métier :**
 
 ```java
 @Service
-public class PaymentService {
+public class ClientService {
 
-    public void pay() {
-        System.out.println("Paiement effectué");
+    public void saveClient() {
+        System.out.println("Sauvegarde du client");
+    }
+
+    public void updateClient() {
+        System.out.println("Modification du client");
     }
 }
 ```
 
-**Aspect de logging :**
+**Aspect :**
 
 ```java
 @Aspect
 @Component
-@Slf4j
 public class LoggingAspect {
 
-    @Around("execution(* com.example.service..*(..))")
-    public Object logExecution(ProceedingJoinPoint joinPoint) throws Throwable {
-        String method = joinPoint.getSignature().toShortString();
+    @Pointcut("execution(* com.example.service.ClientService.*(..))")
+    public void clientServiceMethods() {}
+
+    @Around("clientServiceMethods()")
+    public Object measureExecutionTime(ProceedingJoinPoint joinPoint)
+            throws Throwable {
 
         long start = System.currentTimeMillis();
 
-        log.info("Début : {}", method);
-
         try {
-            Object result = joinPoint.proceed();
-
-            log.info("Fin : {} - {} ms",
-                    method, System.currentTimeMillis() - start);
-
-            return result;
-        } catch (Throwable ex) {
-            log.error("Erreur dans : {}", method, ex);
-            throw ex;
+            return joinPoint.proceed();
+        } finally {
+            long duration = System.currentTimeMillis() - start;
+            System.out.println("Durée : " + duration + " ms");
         }
     }
 }
@@ -88,45 +185,40 @@ public class LoggingAspect {
 **Utilisation :**
 
 ```java
-paymentService.pay();
+clientService.saveClient();
 ```
 
-L'appel passe par le proxy Spring, qui exécute l'aspect avant et après la méthode métier.
+L'appel passe par le proxy Spring, qui applique l'Advice associé au Pointcut avant et après l'exécution de la méthode cible.
 
-## 4. Pointcut : sélectionner les méthodes
+## 5. Spring AOP vs AspectJ
 
-Les expressions Pointcut permettent de cibler les méthodes à intercepter.
-
-```java
-// Toutes les méthodes des services
-execution(* com.example.service..*(..))
-
-// Toutes les méthodes publiques
-execution(public * com.example..*(..))
-
-// Méthodes annotées avec @Loggable
-@annotation(com.example.annotation.Loggable)
-
-// Toutes les classes annotées avec @Loggable
-@within(com.example.annotation.Loggable)
-```
-
-## 5. Limitations de Spring AOP
-
-Spring AOP repose principalement sur des proxies :
-
-- Seuls les appels passant par le proxy sont interceptés.
-- L'auto-invocation (`this.maMethode()`) contourne le proxy.
-- Les méthodes privées ne sont pas interceptées.
-- Les méthodes finales ne peuvent pas être interceptées avec les proxies basés sur l'héritage (CGLIB).
-- Spring AOP intercepte principalement les appels de méthodes des beans Spring.
-
-## 6. AOP vs OOP
-
-| OOP | AOP |
+| Spring AOP | AspectJ |
 |---|---|
-| Organise le code autour des objets | Sépare les préoccupations transversales |
-| Encapsulation et héritage | Aspects et Advice |
-| Logique métier | Logging, transactions, sécurité, etc. |
+| Basé principalement sur des proxies. | Basé sur le weaving. |
+| Intercepte principalement les exécutions de méthodes. | Offre des points d'interception plus étendus. |
+| Intégration native avec Spring. | Fonctionne indépendamment de Spring. |
+| Plus simple à mettre en œuvre. | Plus puissant et plus flexible. |
 
-**À retenir :** AOP permet d'éviter de répéter le même code technique dans plusieurs classes métier. Spring utilise notamment AOP pour implémenter `@Transactional`, le logging et certaines fonctionnalités de sécurité.
+**Limites de Spring AOP :**
+- Les appels internes entre méthodes d'un même objet (*Self-Invocation*) ne passent généralement pas par le proxy.
+- Les méthodes privées ne sont pas interceptées par les proxies Spring AOP.
+- L'interception dépend du passage de l'appel par le proxy.
+
+## 6. Synthèse des concepts
+
+| Concept | Rôle |
+|---|---|
+| Aspect | Regroupe les traitements transversaux. |
+| Join Point | Point d'exécution potentiel auquel intervenir. |
+| Pointcut | Sélectionne les Join Points concernés. |
+| Advice | Définit l'action et le moment de son exécution. |
+| Before / After / Around | Types d'Advice. |
+| Target Object | Objet métier ciblé par l'aspect. |
+| Proxy | Intermédiaire qui intercepte les appels. |
+| Weaving | Mécanisme d'intégration des aspects. |
+
+**À retenir :**
+- Le Join Point représente le point d'exécution.
+- Le Pointcut choisit où intervenir.
+- L'Advice définit quoi faire et quand.
+- L'Aspect regroupe les Pointcuts et les Advices.

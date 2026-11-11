@@ -4,143 +4,69 @@
 
 La programmation orientée objet (POO) est un paradigme de programmation qui organise le logiciel autour d'objets regroupant des attributs représentant leur état et des méthodes définissant leurs comportements.
 
-Elle repose sur la modélisation des entités métier et de leurs interactions afin de concevoir des applications modulaires, extensibles et maintenables.
-
 ## 2. Concepts fondamentaux
 
 | Concept | Définition |
 |---|---|
 | Classe (Class) | Modèle définissant la structure et le comportement des objets. |
 | Objet (Object) | Instance d'une classe possédant un état et un comportement. |
-| Attribut (Attribute) | Donnée déclarée dans une classe et représentant une caractéristique d'un objet. |
+| Attribut (Attribute) | Donnée représentant une caractéristique d'un objet. |
 | Méthode (Method) | Opération définissant le comportement d'un objet. |
-| Constructeur (Constructor) | Mécanisme permettant d'initialiser un objet lors de sa création. |
-| Interface (Interface) | Contrat définissant les opérations que les classes implémentantes doivent respecter. |
-| Classe abstraite (Abstract Class) | Classe non instanciable pouvant contenir des attributs, des constructeurs, des méthodes concrètes et des méthodes abstraites. |
+| Constructeur (Constructor) | Mécanisme d'initialisation d'un objet. |
+| Interface (Interface) | Contrat définissant les comportements à implémenter. |
+| Classe abstraite (Abstract Class) | Classe non instanciable pouvant définir des attributs et des méthodes abstraites ou concrètes. |
 
 ## 3. Les quatre piliers de la POO
 
 | Principe | Définition |
 |---|---|
-| Encapsulation | Protection de l'état interne d'un objet en contrôlant l'accès à ses attributs et en exposant des opérations maîtrisées. |
-| Héritage | Mécanisme permettant à une classe de récupérer et de spécialiser les caractéristiques d'une autre classe. |
-| Polymorphisme | Capacité à manipuler différents types d'objets à travers une même abstraction, tout en bénéficiant de comportements spécifiques. |
-| Abstraction | Définition des fonctionnalités essentielles en masquant les détails de leur implémentation. |
+| Encapsulation | Protection de l'état interne d'un objet en contrôlant l'accès à ses attributs. |
+| Héritage | Mécanisme permettant à une classe de récupérer et spécialiser les caractéristiques d'une autre classe. |
+| Polymorphisme | Capacité à manipuler différents types d'objets à travers une même abstraction. |
+| Abstraction | Exposition des fonctionnalités essentielles en masquant les détails d'implémentation. |
 
 ### 3.1. Abstraction et implémentation
 
-L'abstraction définit ce qu'un objet doit faire, tandis que l'implémentation définit comment ce comportement est réalisé.
+L'abstraction définit **ce qui doit être fait**, tandis que l'implémentation définit **comment cela est réalisé**.
 
-En Java, l'abstraction est principalement mise en œuvre à travers les interfaces et les classes abstraites.
-
-| Notion | Rôle |
-|---|---|
-| Abstraction | Expose les fonctionnalités essentielles sans révéler les détails internes. |
-| Interface | Définit un contrat que les classes implémentantes doivent respecter. |
-| Classe abstraite | Définit une abstraction pouvant combiner comportements communs et méthodes abstraites. |
-| Implémentation | Fournit la logique concrète des fonctionnalités définies par une abstraction. |
-
-**Exemple :**
-
-```java
-public interface Payment {
-    void pay(double amount);
-}
-
-public class CardPayment implements Payment {
-
-    @Override
-    public void pay(double amount) {
-        // Implémentation du paiement par carte
-    }
-}
-```
-
-Le code client utilise le contrat `Payment` sans dépendre des détails de l'implémentation concrète.
+En Java :
+- **Interface :** définit un contrat à respecter.
+- **Classe abstraite :** définit un contrat et peut fournir des comportements communs.
+- **Implémentation :** fournit la logique concrète des comportements définis.
 
 ## 4. Les formes de polymorphisme
 
-### 4.1. Polymorphisme par surcharge (Overloading)
-
-Plusieurs méthodes portent le même nom, mais possèdent des signatures différentes (nombre, type ou ordre des paramètres).
-
-- Résolution statique à la compilation.
-- Exemple : plusieurs méthodes `calculate()` avec des paramètres différents.
-
-### 4.2. Polymorphisme par redéfinition (Overriding)
-
-Une sous-classe fournit une implémentation spécifique d'une méthode héritée.
-
-- Résolution dynamique à l'exécution.
-- Basé sur l'héritage.
-- Exemple : une méthode `draw()` redéfinie dans les classes `Circle` et `Rectangle`.
-
-### 4.3. Polymorphisme par sous-typage (Subtype Polymorphism)
-
-Permet de manipuler différents objets à travers un type parent commun (classe parente ou interface).
-
-- Le comportement effectif dépend du type réel de l'objet.
-- Permet de remplacer une implémentation par une autre sans modifier le code client.
-- Exemple : `CardPayment` et `CashPayment` manipulés à travers l'interface `Payment`.
-
-### 4.4. Polymorphisme paramétrique (Parametric Polymorphism)
-
-Permet de définir des classes, interfaces et méthodes génériques capables de fonctionner avec différents types de données sans dupliquer le code.
-
-- Utilise les génériques (Generics).
-- Le type est défini lors de l'utilisation.
-- Exemple : `List<String>`, `List<Integer>` ou une méthode générique `identity(T value)`.
-
-```java
-public class Box<T> {
-
-    private T value;
-
-    public void setValue(T value) {
-        this.value = value;
-    }
-
-    public T getValue() {
-        return value;
-    }
-}
-```
+| Forme | Définition |
+|---|---|
+| Surcharge (Overloading) | Plusieurs méthodes portent le même nom avec des signatures différentes. Résolution statique à la compilation. |
+| Redéfinition (Overriding) | Une sous-classe fournit une implémentation spécifique d'une méthode héritée. Résolution dynamique à l'exécution. |
+| Sous-typage (Subtype Polymorphism) | Manipulation de différents objets à travers un type parent commun (classe ou interface). |
+| Paramétrique (Parametric Polymorphism) | Utilisation de paramètres de type (Generics) pour concevoir des classes, interfaces et méthodes compatibles avec différents types. |
 
 ## 5. Relations entre objets
 
 | Relation | Définition | Exemple |
 |---|---|---|
 | Association | Relation entre deux objets pouvant interagir. | `Customer` utilise `BankAccount`. |
-| Agrégation | Relation HAS-A où les objets conservent des cycles de vie indépendants. | `Department` possède des `Employee`. |
-| Composition | Relation HAS-A forte où le cycle de vie de la partie dépend du tout. | `House` contient des `Room`. |
-| Héritage | Relation de spécialisation IS-A. | `Dog extends Animal`. |
-| Dépendance | Relation d'utilisation temporaire d'un autre objet. | `OrderService` utilise `EmailService` dans une méthode. |
-
-**À retenir :**
-- Association : interagit avec.
-- Agrégation : possède indépendamment.
-- Composition : contient avec dépendance du cycle de vie.
-- Héritage : est un.
-- Dépendance : utilise temporairement.
+| Agrégation | Relation HAS-A avec des cycles de vie indépendants. | `Department` possède des `Employee`. |
+| Composition | Relation HAS-A forte avec dépendance du cycle de vie. | `House` contient des `Room`. |
+| Héritage | Relation de spécialisation IS-A. | `Dog` est un `Animal`. |
+| Dépendance | Utilisation ponctuelle d'un autre objet. | `OrderService` utilise `EmailService`. |
 
 ## 6. Composition et héritage
 
-Deux mécanismes permettent de structurer et de réutiliser les comportements :
+- **Héritage (IS-A) :** spécialisation d'une classe existante.
+- **Composition (HAS-A) :** assemblage d'objets collaborant entre eux.
 
-- **Héritage (IS-A)** : spécialisation d'une classe existante.
-- **Composition (HAS-A)** : construction d'un objet à partir d'autres objets qui collaborent entre eux.
+Privilégier la composition lorsque la relation de spécialisation n'est pas justifiée.
 
-La composition est généralement à privilégier lorsque la relation de spécialisation n'est pas justifiée.
+## 7. Bonnes pratiques
 
-## 7. Bonnes pratiques en POO
-
-- Respecter l'encapsulation et contrôler l'accès à l'état interne des objets.
-- Privilégier la composition lorsque l'héritage n'est pas nécessaire.
-- Programmer contre des interfaces plutôt que contre des implémentations concrètes.
-- Utiliser les classes abstraites pour factoriser les comportements communs.
-- Favoriser des classes cohérentes avec des responsabilités bien définies.
+- Respecter l'encapsulation et contrôler l'accès aux attributs.
+- Privilégier la composition plutôt que l'héritage lorsque pertinent.
+- Programmer contre des interfaces plutôt que des implémentations concrètes.
+- Favoriser des classes cohérentes et faiblement couplées.
 - Éviter les hiérarchies d'héritage trop profondes.
-- Limiter le couplage entre les objets.
 - Favoriser l'immuabilité lorsque cela est pertinent.
 - Garantir la cohérence de l'état des objets.
 
@@ -149,12 +75,7 @@ La composition est généralement à privilégier lorsque la relation de spécia
 | Avantages | Limites |
 |---|---|
 | Modularité | Risque de sur-ingénierie |
-| Réutilisabilité | Complexité des hiérarchies d'héritage |
+| Réutilisabilité | Complexité des hiérarchies |
 | Maintenabilité | Multiplication des abstractions |
 | Extensibilité | Coût de conception initial |
 | Encapsulation | Risque de couplage excessif |
-
-## Références
-
-- [Documentation officielle Java](https://docs.oracle.com/en/java/)
-- [Java Language Specification](https://docs.oracle.com/javase/specs/)
