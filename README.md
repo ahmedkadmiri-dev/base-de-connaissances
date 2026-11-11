@@ -1,564 +1,681 @@
-# Dev Snippets
+# Base de connaissances techniques
 
-A personal collection of **reusable code snippets, technical notes, best practices, and production-oriented examples** for Full-Stack and DevOps development.
+> Un référentiel technique structuré couvrant le génie logiciel, le développement Backend et Frontend, l'architecture logicielle, les infrastructures, le DevOps, la sécurité et les implémentations logicielles réutilisables.
 
-The repository focuses on **Java / Spring Boot, Angular, Oracle, PostgreSQL, Git, Jenkins, Ansible, Docker, Linux, CI/CD, and software architecture**.
-
-The goal is to build a practical technical knowledge base that can be reused across projects and shared with other developers.
-
----
-
-## 🧰 Tech Stack
-
-### Backend
-
-* Java
-* Spring Boot
-* Spring MVC
-* Spring Data JPA
-* Hibernate
-* REST APIs
-* Maven
-* Lombok
-* MapStruct / ModelMapper
-* OpenAPI / Swagger
-* JUnit
-* Mockito
-* Testcontainers
-
-### Frontend
-
-* Angular
-* TypeScript
-* RxJS
-* HTML / CSS
-* Angular Forms
-* Angular HTTP Client
-* Angular Interceptors
-* Angular Guards
-* Angular State Management
-
-### Databases
-
-* Oracle
-* PostgreSQL
-* SQL
-* PL/SQL
-* Database migrations
-* Indexes
-* Transactions
-* Query optimization
-
-### DevOps
-
-* Git
-* GitHub / GitLab
-* Jenkins
-* Ansible
-* Docker
-* Linux
-* Bash
-* CI/CD
-* Nginx
-* Infrastructure as Code
-
-### Architecture & Security
-
-* REST
-* Microservices
-* API Gateway
-* BFF
-* OAuth2
-* OpenID Connect
-* Keycloak
-* JWT
-* TLS / SSL
-* IAM
-* Logging
-* Monitoring
-* Distributed systems
+[![Auteur](https://img.shields.io/badge/Auteur-Ahmed%20Kadmiri-blue)](https://github.com/ahmedkadmiri-dev)
+![Domaine](https://img.shields.io/badge/Domaine-Génie%20Logiciel-green)
+![Knowledge](https://img.shields.io/badge/Documentation-Concepts%20%26%20Bonnes%20Pratiques-orange)
+![Templates](https://img.shields.io/badge/Templates-Implémentations%20Réutilisables-purple)
 
 ---
 
-# 📚 Topics
+## 🎯 Présentation
 
-The repository is organized by technical domain.
+Ce dépôt constitue une base de connaissances techniques destinée à centraliser les concepts du génie logiciel, les principes d'architecture, les documentations techniques, les bonnes pratiques ainsi que les implémentations logicielles réutilisables.
 
-## 01 — Java
+Il repose sur deux axes complémentaires :
 
-* [Java Collections](01-java/java-collections.md)
-* [Java Streams](01-java/java-streams.md)
-* [Optional](01-java/java-optionals.md)
-* [Exception Handling](01-java/java-exceptions.md)
-* [Generics](01-java/java-generics.md)
-* [Records](01-java/java-records.md)
-* [Enums](01-java/java-enums.md)
-* [Date & Time API](01-java/java-date-time.md)
-* [Concurrency](01-java/java-concurrency.md)
-* [CompletableFuture](01-java/java-completable-future.md)
-* [Java Performance](01-java/java-performance.md)
-* [Clean Code](01-java/java-clean-code.md)
-* [SOLID Principles](01-java/java-solid.md)
-* [Design Patterns](01-java/java-design-patterns.md)
+- **Knowledge (Connaissances) :** définitions, concepts, principes, protocoles, normes, design patterns, architectures et bonnes pratiques d'ingénierie logicielle.
+- **Templates (Modèles et implémentations) :** modules techniques réutilisables, implémentations de référence, configurations et composants prêts à être intégrés dans des projets.
+
+L'objectif est de construire un référentiel technique structuré et évolutif, permettant de comprendre les technologies, de faciliter les choix techniques, de concevoir des architectures robustes et d'accélérer les développements.
 
 ---
 
-# 02 — Spring Boot
+# 📚 Organisation du dépôt
 
-* [Spring Boot Architecture](02-spring-boot/spring-boot-architecture.md)
-* [Dependency Injection](02-spring-boot/spring-dependency-injection.md)
-* [Configuration](02-spring-boot/spring-configuration.md)
-* [Profiles & Environments](02-spring-boot/spring-profiles.md)
-* [REST Controllers](02-spring-boot/spring-rest-controllers.md)
-* [DTOs](02-spring-boot/spring-dto.md)
-* [Validation](02-spring-boot/spring-validation.md)
-* [Exception Handling](02-spring-boot/spring-exception-handling.md)
-* [Global Exception Handler](02-spring-boot/spring-global-exception-handler.md)
-* [Logging & MDC](02-spring-boot/spring-logging-mdc.md)
-* [Interceptors](02-spring-boot/spring-interceptors.md)
-* [Filters](02-spring-boot/spring-filters.md)
-* [Transactions](02-spring-boot/spring-transactions.md)
-* [Caching](02-spring-boot/spring-caching.md)
-* [Scheduling](02-spring-boot/spring-scheduling.md)
-* [Async Processing](02-spring-boot/spring-async.md)
-* [Actuator](02-spring-boot/spring-actuator.md)
-* [OpenAPI / Swagger](02-spring-boot/spring-openapi.md)
-
----
-
-# 03 — JPA / Hibernate
-
-* [Entity Mapping](03-jpa-hibernate/entity-mapping.md)
-* [Relationships](03-jpa-hibernate/relationships.md)
-* [OneToMany / ManyToOne](03-jpa-hibernate/one-to-many.md)
-* [ManyToMany](03-jpa-hibernate/many-to-many.md)
-* [Fetch Strategies](03-jpa-hibernate/fetch-strategies.md)
-* [Lazy vs Eager](03-jpa-hibernate/lazy-eager.md)
-* [N+1 Problem](03-jpa-hibernate/n-plus-one.md)
-* [Entity Graphs](03-jpa-hibernate/entity-graphs.md)
-* [JPQL](03-jpa-hibernate/jpql.md)
-* [Native Queries](03-jpa-hibernate/native-queries.md)
-* [Specifications](03-jpa-hibernate/specifications.md)
-* [Pagination](03-jpa-hibernate/pagination.md)
-* [Optimistic Locking](03-jpa-hibernate/optimistic-locking.md)
-* [Pessimistic Locking](03-jpa-hibernate/pessimistic-locking.md)
-* [Transactions](03-jpa-hibernate/transactions.md)
-* [Persistence Context](03-jpa-hibernate/persistence-context.md)
-* [Multiple DataSources](03-jpa-hibernate/multiple-datasources.md)
-* [Hibernate Performance](03-jpa-hibernate/hibernate-performance.md)
-
----
-
-# 04 — REST API
-
-* [REST Principles](04-rest-api/rest-principles.md)
-* [HTTP Methods](04-rest-api/http-methods.md)
-* [HTTP Status Codes](04-rest-api/http-status-codes.md)
-* [API Versioning](04-rest-api/api-versioning.md)
-* [Pagination](04-rest-api/pagination.md)
-* [Filtering & Sorting](04-rest-api/filtering-sorting.md)
-* [Error Response Design](04-rest-api/error-response.md)
-* [API Validation](04-rest-api/api-validation.md)
-* [Idempotency](04-rest-api/idempotency.md)
-* [Correlation ID](04-rest-api/correlation-id.md)
-* [Retry](04-rest-api/retry.md)
-* [Timeout](04-rest-api/timeout.md)
-* [Rate Limiting](04-rest-api/rate-limiting.md)
-* [OpenAPI](04-rest-api/openapi.md)
+```text
+base-de-connaissances/
+│
+├── README.md
+│
+├── knowledge/
+│   │
+│   ├── 01-software-engineering/
+│   ├── 02-backend-engineering/
+│   ├── 03-frontend-engineering/
+│   ├── 04-software-architecture/
+│   ├── 05-api-integration/
+│   ├── 06-database-engineering/
+│   ├── 07-security-engineering/
+│   ├── 08-testing-engineering/
+│   ├── 09-devops-ci-cd/
+│   ├── 10-infrastructure-middleware/
+│   ├── 11-observability/
+│   ├── 12-performance-engineering/
+│   ├── 13-technical-leadership/
+│   └── tools/
+│
+└── templates/
+    │
+    ├── spring-boot/
+    │   ├── core/
+    │   ├── security/
+    │   ├── integration/
+    │   ├── testing/
+    │   └── starters/
+    │
+    ├── devops/
+    │   ├── docker/
+    │   ├── jenkins/
+    │   ├── sonarqube/
+    │   ├── nexus/
+    │   └── ansible/
+    │
+    └── infrastructure/
+        ├── nginx/
+        └── kubernetes/
+```
 
 ---
 
-# 05 — Angular
+# 📖 01 — Knowledge : Connaissances techniques
 
-* [Angular Architecture](05-angular/angular-architecture.md)
-* [Components](05-angular/components.md)
-* [Services](05-angular/services.md)
-* [Dependency Injection](05-angular/dependency-injection.md)
-* [Routing](05-angular/routing.md)
-* [Guards](05-angular/guards.md)
-* [Interceptors](05-angular/interceptors.md)
-* [Reactive Forms](05-angular/reactive-forms.md)
-* [Template Driven Forms](05-angular/template-driven-forms.md)
-* [RxJS](05-angular/rxjs.md)
-* [Observables](05-angular/observables.md)
-* [Subjects](05-angular/subjects.md)
-* [Signals](05-angular/signals.md)
-* [HTTP Client](05-angular/http-client.md)
-* [Error Handling](05-angular/error-handling.md)
-* [Authentication](05-angular/authentication.md)
-* [Authorization](05-angular/authorization.md)
-* [Lazy Loading](05-angular/lazy-loading.md)
-* [State Management](05-angular/state-management.md)
-* [Angular Performance](05-angular/performance.md)
-* [Angular Testing](05-angular/testing.md)
+Cette section regroupe la documentation conceptuelle et théorique.
+
+Elle couvre les définitions, les principes fondamentaux, les mécanismes de fonctionnement, les approches architecturales, les technologies, les protocoles et les bonnes pratiques.
+
+Chaque documentation doit permettre de comprendre un concept, son utilité, son fonctionnement, ses avantages, ses limites et ses cas d'utilisation.
+
+## 01. Génie logiciel (Software Engineering)
+
+Fondamentaux et principes du développement logiciel professionnel.
+
+- Paradigmes de programmation
+  - Programmation orientée objet (OOP)
+  - Programmation fonctionnelle
+  - Programmation procédurale
+  - Programmation orientée aspect (AOP)
+- Principes de conception logicielle
+  - SOLID
+  - DRY
+  - KISS
+  - YAGNI
+  - Séparation des responsabilités (Separation of Concerns)
+  - Composition plutôt qu'héritage
+  - Loi de Demeter
+- Clean Code
+- Clean Architecture
+- Refactoring
+- Dette technique
+- Design Patterns
+  - Création
+  - Structure
+  - Comportement
+- Cycle de vie du développement logiciel (SDLC)
+- Méthodes Agile et Scrum
+- TDD, BDD et DDD
+- Revue de code (Code Review)
+- Standards de codage
+- Versionnement sémantique (Semantic Versioning)
+- Workflows Git
+
+## 02. Développement Backend (Backend Engineering)
+
+Concepts, technologies et frameworks dédiés au développement côté serveur.
+
+- Java
+  - Collections
+  - Streams
+  - Optional
+  - Generics
+  - Records
+  - Enums
+  - API Date & Time
+  - Gestion des exceptions
+  - Concurrence et multithreading
+  - CompletableFuture
+  - JVM et Garbage Collection
+  - Performance Java
+- Écosystème Spring
+  - Spring Core
+  - Injection de dépendances (DI)
+  - Spring Boot
+  - Spring MVC
+  - Spring Data JPA
+  - Spring Security
+  - Spring Cloud
+  - Spring AOP
+  - Transactions Spring
+  - Spring Actuator
+- Persistance des données
+  - JDBC
+  - JPA
+  - Hibernate
+  - Mapping des entités
+  - Relations entre entités
+  - Stratégies de chargement
+  - Lazy vs Eager
+  - Problème N+1
+  - Entity Graphs
+  - JPQL et requêtes natives
+  - Specifications
+  - Persistence Context
+  - Transactions
+  - Multi-DataSources
+- Gestion des dépendances et du build
+  - Maven
+  - Gradle
+  - POM
+  - Dependency Management
+  - Maven Profiles
+  - Maven Plugins
+  - Projets multi-modules
+- Bonnes pratiques Backend
+  - DTO
+  - Validation
+  - Gestion centralisée des exceptions
+  - Logging
+  - Caching
+  - Scheduling
+  - Traitements asynchrones
+
+## 03. Développement Frontend (Frontend Engineering)
+
+Technologies et concepts de développement des applications côté client.
+
+- HTML et CSS
+- JavaScript
+- TypeScript
+- Angular
+  - Architecture
+  - Components
+  - Services
+  - Injection de dépendances
+  - Routing
+  - Guards
+  - Interceptors
+  - Reactive Forms
+  - Template-Driven Forms
+  - RxJS
+  - Observables
+  - Subjects
+  - Signals
+  - HTTP Client
+  - Gestion d'état (State Management)
+  - Lazy Loading
+  - Authentification et autorisation
+  - Tests Angular
+- Architecture Frontend
+- Architecture orientée composants
+- SPA et SSR
+- Performance Web
+- Sécurité Frontend
+
+## 04. Architecture logicielle (Software Architecture)
+
+Concepts architecturaux, styles d'architecture et conception des systèmes.
+
+- Fondamentaux de l'architecture logicielle
+- Architecture en couches (Layered Architecture)
+- Architecture N-Tiers
+- Clean Architecture
+- Architecture Hexagonale
+- Architecture Onion
+- Monolithe modulaire (Modular Monolith)
+- Architecture Microservices
+- Monolithe vs Microservices
+- Domain-Driven Design (DDD)
+- Bounded Context
+- CQRS
+- Event Sourcing
+- Architecture événementielle (Event-Driven Architecture)
+- Systèmes distribués
+- Transactions distribuées
+- Saga Pattern
+- Strangler Pattern
+- Backend for Frontend (BFF)
+- API Gateway
+- Service Discovery
+- Configuration Server
+- Reverse Proxy
+- Load Balancing
+- Patterns de résilience
+  - Circuit Breaker
+  - Retry
+  - Timeout
+  - Bulkhead
+  - Rate Limiting
+- Messaging et Streaming
+  - Message Broker
+  - Event Streaming
+  - RabbitMQ
+  - Apache Kafka
+
+## 05. API et intégration (API & Integration Engineering)
+
+Conception des API, protocoles de communication et intégration des systèmes.
+
+- Principes REST
+- Protocole HTTP
+- Méthodes HTTP
+- Codes de statut HTTP
+- Versionnement des API
+- Contrats d'API
+- OpenAPI / Swagger
+- Conception des requêtes et réponses
+- Format standardisé des erreurs
+- Validation des API
+- Pagination
+- Filtrage et tri
+- Idempotence
+- Correlation ID
+- Rate Limiting
+- Retry et Timeout
+- REST Client
+- WebClient
+- OpenFeign
+- SOAP
+- Webhooks
+- Communication synchrone et asynchrone
+- Intégration d'API externes
+
+## 06. Ingénierie des bases de données (Database Engineering)
+
+Technologies de bases de données, modélisation et optimisation des performances.
+
+- Fondamentaux des bases de données
+- Bases relationnelles
+- Bases NoSQL
+- SQL et PL/SQL
+- Modélisation des données
+- Normalisation
+- Tables, vues et séquences
+- Index et contraintes
+- Procédures stockées et fonctions
+- Triggers
+- Transactions
+- Propriétés ACID
+- Niveaux d'isolation
+- Verrouillage
+- Plans d'exécution
+- Optimisation des requêtes
+- Connection Pooling
+- Migration de bases de données
+- Oracle
+- PostgreSQL
+- Redis
+- Flyway
+- Liquibase
+- Migration des données
+
+## 07. Ingénierie de la sécurité (Security Engineering)
+
+Concepts de sécurité des applications et des infrastructures.
+
+- Fondamentaux de la sécurité
+- Authentification et autorisation
+- IAM
+- RBAC et ABAC
+- OAuth 2.0
+- OpenID Connect
+- JWT
+- SSO
+- Keycloak
+- TLS / SSL
+- Certificats
+- KeyStore et TrustStore
+- CORS
+- CSRF
+- OWASP Top 10
+- Gestion des secrets (Secrets Management)
+- Chiffrement et hachage
+- Sécurité des API
+- Secure Coding
+- LDAP et Active Directory
+
+## 08. Ingénierie des tests (Testing Engineering)
+
+Méthodologies, stratégies et outils de test logiciel.
+
+- Fondamentaux des tests logiciels
+- Pyramide des tests (Testing Pyramid)
+- Tests unitaires
+- Tests d'intégration
+- Tests de bout en bout (End-to-End)
+- Tests de contrats (Contract Testing)
+- Tests d'acceptation
+- Tests de régression
+- Tests de performance
+- TDD
+- BDD
+- JUnit
+- Mockito
+- MockMvc
+- Testcontainers
+- Cucumber
+- Test Fixtures
+- Couverture de tests
+- Stratégie de tests
+
+## 09. DevOps et CI/CD
+
+Automatisation, intégration continue, livraison continue et industrialisation.
+
+- Fondamentaux DevOps
+- CI / CD
+- Git
+- GitHub et GitLab
+- Jenkins
+- Pipeline as Code
+- SonarQube
+- Nexus
+- Dépôt d'artefacts (Artifact Repository)
+- Versionnement des artefacts
+- Docker
+- Docker Compose
+- Kubernetes
+- Ansible
+- Infrastructure as Code
+- Linux
+- Bash
+- Nginx
+- Stratégies de déploiement
+  - Blue-Green Deployment
+  - Canary Deployment
+  - Rollback
+
+## 10. Infrastructure et Middleware
+
+Composants d'infrastructure et services intermédiaires utilisés dans les systèmes d'information.
+
+- Fondamentaux de l'infrastructure
+- Réseaux
+- DNS
+- TCP/IP
+- HTTP / HTTPS
+- Reverse Proxy
+- Load Balancer
+- API Gateway
+- API Manager
+- Message Broker
+- Event Streaming
+- Serveur d'applications
+- Serveur Web
+- Service Discovery
+- Configuration Server
+- Cache
+- Distributed Cache
+- Object Storage
+- SMTP
+- LDAP / Active Directory
+
+## 11. Observabilité et supervision (Observability & Monitoring)
+
+Surveillance, diagnostic et compréhension du comportement des applications.
+
+- Fondamentaux de l'observabilité
+- Logging
+- Structured Logging
+- Correlation ID
+- MDC
+- Métriques
+- Distributed Tracing
+- Health Checks
+- Monitoring
+- Alerting
+- OpenTelemetry
+- Prometheus
+- Grafana
+- ELK / EFK
+- Spring Boot Actuator
+
+## 12. Ingénierie de la performance (Performance Engineering)
+
+Optimisation des applications et des systèmes.
+
+- Fondamentaux de la performance
+- Performance JVM
+- Gestion de la mémoire
+- Garbage Collection
+- Connection Pooling
+- Performance des bases de données
+- Optimisation des requêtes
+- Stratégies de cache
+- Tests de charge (Load Testing)
+- Tests de stress
+- Profiling
+- Scalabilité
+- Haute disponibilité
+
+## 13. Leadership technique et gouvernance (Technical Leadership)
+
+Organisation et gouvernance des activités d'ingénierie logicielle.
+
+- Revue d'architecture
+- Architecture Decision Records (ADR)
+- Standards de revue de code
+- Coding Standards
+- Definition of Done
+- Gestion de la dette technique
+- Gestion des versions et releases
+- Gestion des incidents
+- Production Readiness
+- Capacity Planning
+- Roadmaps techniques
+- Gouvernance de la qualité logicielle
 
 ---
 
-# 06 — Oracle
+# 🧩 02 — Templates : Modules et implémentations réutilisables
 
-* [Oracle SQL](06-oracle/oracle-sql.md)
-* [PL/SQL](06-oracle/plsql.md)
-* [Tables](06-oracle/tables.md)
-* [Sequences](06-oracle/sequences.md)
-* [Indexes](06-oracle/indexes.md)
-* [Constraints](06-oracle/constraints.md)
-* [Views](06-oracle/views.md)
-* [Stored Procedures](06-oracle/stored-procedures.md)
-* [Functions](06-oracle/functions.md)
-* [Triggers](06-oracle/triggers.md)
-* [Transactions](06-oracle/transactions.md)
-* [Locks](06-oracle/locks.md)
-* [Execution Plans](06-oracle/execution-plans.md)
-* [Query Optimization](06-oracle/query-optimization.md)
-* [Oracle Performance](06-oracle/performance.md)
-* [Database Migration](06-oracle/migration.md)
-* [Export / Import](06-oracle/export-import.md)
-* [Oracle JDBC](06-oracle/jdbc.md)
+Cette section regroupe les modules techniques, les configurations et les projets de référence destinés à être réutilisés dans différents contextes de développement.
 
----
+Contrairement à la section Knowledge, qui explique les concepts, cette section présente leur mise en œuvre concrète.
 
-# 07 — PostgreSQL
+Chaque module doit être documenté, configurable, testable et conçu pour faciliter son intégration dans des projets réels.
 
-* [PostgreSQL SQL](07-postgresql/postgresql-sql.md)
-* [Tables](07-postgresql/tables.md)
-* [Sequences](07-postgresql/sequences.md)
-* [Indexes](07-postgresql/indexes.md)
-* [Constraints](07-postgresql/constraints.md)
-* [Transactions](07-postgresql/transactions.md)
-* [Execution Plans](07-postgresql/explain-analyze.md)
-* [Query Optimization](07-postgresql/query-optimization.md)
-* [pgAdmin](07-postgresql/pgadmin.md)
-* [pg_dump / pg_restore](07-postgresql/pg-dump.md)
-* [Database Migration](07-postgresql/migration.md)
+## Structure des templates
 
----
+Un module peut contenir les éléments suivants selon sa nature :
 
-# 08 — Maven
+```text
+module-name/
+│
+├── README.md
+├── pom.xml
+│
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   └── resources/
+│   │
+│   └── test/
+│       └── java/
+│
+└── examples/
+```
 
-* [Maven Structure](08-maven/maven-structure.md)
-* [POM](08-maven/pom.md)
-* [Dependencies](08-maven/dependencies.md)
-* [Dependency Management](08-maven/dependency-management.md)
-* [Profiles](08-maven/profiles.md)
-* [Plugins](08-maven/plugins.md)
-* [Multi-Module Projects](08-maven/multi-module.md)
-* [Maven Troubleshooting](08-maven/troubleshooting.md)
-* [Dependency Tree](08-maven/dependency-tree.md)
-* [Build Optimization](08-maven/build-optimization.md)
+## 01. Modules Spring Boot — Core
 
----
+Modules transverses et composants communs aux applications Spring Boot.
 
-# 09 — Testing
+| Module | Description |
+|---|---|
+| Logging | Configuration centralisée du logging et logs structurés |
+| Exception Handling | Gestion centralisée et standardisée des exceptions |
+| API Documentation | Configuration OpenAPI / Swagger |
+| Validation | Configuration et composants de validation |
+| Audit | Traçabilité des opérations métier |
+| Correlation ID | Corrélation des requêtes et propagation MDC |
+| Configuration | Gestion des configurations et des profils |
+| Health Checks | Vérification de la santé des applications |
+| Monitoring | Intégration des métriques et Actuator |
+| Common Library | Bibliothèque de composants communs |
 
-* [JUnit 5](09-testing/junit5.md)
-* [Mockito](09-testing/mockito.md)
-* [Spring Boot Tests](09-testing/spring-boot-tests.md)
-* [MockMvc](09-testing/mockmvc.md)
-* [Integration Tests](09-testing/integration-tests.md)
-* [Testcontainers](09-testing/testcontainers.md)
-* [REST API Testing](09-testing/rest-api-testing.md)
-* [Contract Testing](09-testing/contract-testing.md)
-* [Test Fixtures](09-testing/test-fixtures.md)
-* [Test Strategy](09-testing/test-strategy.md)
+## 02. Modules Spring Boot — Sécurité
 
----
+Modules destinés à la sécurisation des applications.
 
-# 10 — Git
+| Module | Description |
+|---|---|
+| OAuth2 Resource Server | Validation des tokens JWT |
+| Keycloak Integration | Intégration de l'authentification Keycloak |
+| OAuth2 Client | Configuration d'un client OAuth2 |
+| Role-Based Access | Implémentation RBAC |
+| Method Security | Autorisation au niveau des méthodes |
+| Secrets Management | Gestion externalisée des secrets |
+| TLS Configuration | Configuration SSL/TLS |
 
-* [Git Basics](10-git/git-basics.md)
-* [Branches](10-git/branches.md)
-* [Merge](10-git/merge.md)
-* [Rebase](10-git/rebase.md)
-* [Cherry Pick](10-git/cherry-pick.md)
-* [Reset / Revert](10-git/reset-revert.md)
-* [Stash](10-git/stash.md)
-* [Tags](10-git/tags.md)
-* [Git Hooks](10-git/git-hooks.md)
-* [Git Workflow](10-git/git-workflow.md)
-* [Git Troubleshooting](10-git/troubleshooting.md)
-* [Conventional Commits](10-git/conventional-commits.md)
+## 03. Modules Spring Boot — Intégration
 
----
+Composants dédiés à l'intégration des systèmes et services externes.
 
-# 11 — Jenkins / CI-CD
+| Module | Description |
+|---|---|
+| REST Client | Client HTTP standardisé |
+| WebClient | Communication HTTP réactive |
+| OpenFeign | Client HTTP déclaratif |
+| Resilience | Retry, Timeout et Circuit Breaker |
+| Cache | Configuration et abstraction du cache |
+| Messaging | Intégration des systèmes de messagerie |
+| Database Migration | Intégration Flyway / Liquibase |
+| File Management | Gestion des fichiers et des documents |
+| Email | Envoi d'e-mails et templates |
+| Scheduler | Configuration des tâches planifiées |
 
-* [Jenkins Pipeline](11-jenkins/jenkins-pipeline.md)
-* [Jenkinsfile](11-jenkins/jenkinsfile.md)
-* [Declarative Pipeline](11-jenkins/declarative-pipeline.md)
-* [Parameters](11-jenkins/parameters.md)
-* [Credentials](11-jenkins/credentials.md)
-* [Environment Variables](11-jenkins/environment-variables.md)
-* [Artifacts](11-jenkins/artifacts.md)
-* [Quality Gates](11-jenkins/quality-gates.md)
-* [SonarQube](11-jenkins/sonarqube.md)
-* [Deployment Pipeline](11-jenkins/deployment-pipeline.md)
-* [Rollback](11-jenkins/rollback.md)
-* [Jenkins Troubleshooting](11-jenkins/troubleshooting.md)
+## 04. Modules Spring Boot — Testing
 
----
+Composants et configurations destinés à faciliter les tests.
 
-# 12 — Ansible
+| Module | Description |
+|---|---|
+| Testing Parent | Gestion centralisée des dépendances de test |
+| Unit Testing | Configuration JUnit et Mockito |
+| Integration Testing | Tests avec les dépendances réelles |
+| REST API Testing | Tests HTTP avec MockMvc |
+| Testcontainers | Tests avec bases de données et infrastructures |
+| Test Fixtures | Données de test réutilisables |
+| Contract Testing | Validation des contrats d'API |
 
-* [Ansible Basics](12-ansible/ansible-basics.md)
-* [Inventory](12-ansible/inventory.md)
-* [Playbooks](12-ansible/playbooks.md)
-* [Roles](12-ansible/roles.md)
-* [Variables](12-ansible/variables.md)
-* [Templates](12-ansible/templates.md)
-* [Handlers](12-ansible/handlers.md)
-* [Vault](12-ansible/vault.md)
-* [Deployment](12-ansible/deployment.md)
-* [Idempotency](12-ansible/idempotency.md)
-* [Ansible Troubleshooting](12-ansible/troubleshooting.md)
+## 05. Templates DevOps
 
----
+Configurations et outils destinés à l'industrialisation des applications.
 
-# 13 — Docker
+| Template | Description |
+|---|---|
+| Dockerfile | Image Docker standard pour Spring Boot |
+| Docker Compose | Environnement local de développement |
+| Jenkins Pipeline | Pipeline CI/CD réutilisable |
+| SonarQube | Configuration de l'analyse de qualité |
+| Nexus | Publication et distribution des artefacts |
+| Ansible | Automatisation des déploiements |
 
-* [Docker Basics](13-docker/docker-basics.md)
-* [Dockerfile](13-docker/dockerfile.md)
-* [Images](13-docker/images.md)
-* [Containers](13-docker/containers.md)
-* [Volumes](13-docker/volumes.md)
-* [Networks](13-docker/networks.md)
-* [Docker Compose](13-docker/docker-compose.md)
-* [Multi-Stage Builds](13-docker/multi-stage-builds.md)
-* [Docker Security](13-docker/security.md)
-* [Container Troubleshooting](13-docker/troubleshooting.md)
+## 06. Templates Infrastructure
+
+Configurations d'infrastructure réutilisables.
+
+| Template | Description |
+|---|---|
+| Nginx | Configuration Reverse Proxy |
+| Kubernetes Deployment | Déploiement des applications |
+| Kubernetes Service | Exposition des services |
+| ConfigMaps & Secrets | Gestion des configurations et secrets |
+| Ingress | Gestion des accès entrants |
+
+## 07. Applications de référence (Reference Applications)
+
+Projets complets illustrant l'utilisation de plusieurs modules et concepts architecturaux.
+
+- Spring Boot REST API Starter
+- Spring Boot Microservice Starter
+- Spring Cloud Microservices
+- Spring Boot Modular Monolith
+- Spring Boot Clean Architecture
+- Spring Boot Hexagonal Architecture
+- Spring Boot Event-Driven Application
 
 ---
 
-# 14 — Linux / Bash
+# 📐 Conventions de documentation
 
-* [Linux Commands](14-linux/linux-commands.md)
-* [File Permissions](14-linux/permissions.md)
-* [Processes](14-linux/processes.md)
-* [Services / systemd](14-linux/systemd.md)
-* [Networking](14-linux/networking.md)
-* [Ports](14-linux/ports.md)
-* [Logs](14-linux/logs.md)
-* [SSH](14-linux/ssh.md)
-* [Bash Scripting](14-linux/bash.md)
-* [Disk / Memory / CPU](14-linux/system-monitoring.md)
-* [Troubleshooting](14-linux/troubleshooting.md)
+## Documentation Knowledge
 
----
+Chaque fichier Markdown doit suivre une structure cohérente, adaptée au sujet documenté :
 
-# 15 — Nginx
+1. Définition
+2. Objectif et utilité
+3. Concepts fondamentaux
+4. Fonctionnement
+5. Architecture ou diagramme (si pertinent)
+6. Avantages et limitations
+7. Cas d'utilisation
+8. Exemples
+9. Concepts associés
+10. Références
 
-* [Nginx Basics](15-nginx/nginx-basics.md)
-* [Reverse Proxy](15-nginx/reverse-proxy.md)
-* [Load Balancing](15-nginx/load-balancing.md)
-* [SSL / TLS](15-nginx/ssl-tls.md)
-* [Routing](15-nginx/routing.md)
-* [Headers](15-nginx/headers.md)
-* [Timeouts](15-nginx/timeouts.md)
-* [Nginx Troubleshooting](15-nginx/troubleshooting.md)
+Les documentations doivent rester concises, structurées et techniquement précises.
 
----
+## Documentation Templates
 
-# 16 — Security
+Chaque module réutilisable doit proposer :
 
-* [Authentication](16-security/authentication.md)
-* [Authorization](16-security/authorization.md)
-* [OAuth2](16-security/oauth2.md)
-* [OpenID Connect](16-security/oidc.md)
-* [JWT](16-security/jwt.md)
-* [Keycloak](16-security/keycloak.md)
-* [TLS / SSL](16-security/tls-ssl.md)
-* [Certificates](16-security/certificates.md)
-* [TrustStore / KeyStore](16-security/keystore-truststore.md)
-* [CORS](16-security/cors.md)
-* [CSRF](16-security/csrf.md)
-* [Secrets Management](16-security/secrets.md)
-* [OWASP](16-security/owasp.md)
-* [API Security](16-security/api-security.md)
+1. Présentation
+2. Objectifs
+3. Stack technique
+4. Dépendances
+5. Architecture
+6. Implémentation
+7. Configuration
+8. Guide d'intégration
+9. Exemples d'utilisation
+10. Tests
+11. Bonnes pratiques
 
----
+Les implémentations doivent privilégier :
 
-# 17 — Architecture
-
-* [Layered Architecture](17-architecture/layered-architecture.md)
-* [Clean Architecture](17-architecture/clean-architecture.md)
-* [Hexagonal Architecture](17-architecture/hexagonal.md)
-* [SOLID](17-architecture/solid.md)
-* [DDD](17-architecture/ddd.md)
-* [Microservices](17-architecture/microservices.md)
-* [Monolith vs Microservices](17-architecture/monolith-vs-microservices.md)
-* [BFF](17-architecture/bff.md)
-* [API Gateway](17-architecture/api-gateway.md)
-* [Event Driven Architecture](17-architecture/event-driven.md)
-* [Distributed Transactions](17-architecture/distributed-transactions.md)
-* [Idempotency](17-architecture/idempotency.md)
-* [Resilience Patterns](17-architecture/resilience-patterns.md)
-* [Design Patterns](17-architecture/design-patterns.md)
+- La réutilisabilité
+- La modularité
+- Le faible couplage
+- La configuration externalisée
+- La testabilité
+- La maintenabilité
+- La compatibilité des versions
+- La préparation à un usage en production
 
 ---
 
-# 18 — Observability
+# 🚀 Évolution du référentiel
 
-* [Logging](18-observability/logging.md)
-* [MDC / Correlation ID](18-observability/mdc.md)
-* [Structured Logging](18-observability/structured-logging.md)
-* [Metrics](18-observability/metrics.md)
-* [Health Checks](18-observability/health-checks.md)
-* [Spring Boot Actuator](18-observability/actuator.md)
-* [Distributed Tracing](18-observability/distributed-tracing.md)
-* [OpenTelemetry](18-observability/opentelemetry.md)
-* [Monitoring](18-observability/monitoring.md)
-* [Alerting](18-observability/alerting.md)
+Cette base de connaissances est conçue pour évoluer progressivement.
 
----
+Les principales orientations sont :
 
-# 19 — Performance
-
-* [Java Performance](19-performance/java-performance.md)
-* [Spring Performance](19-performance/spring-performance.md)
-* [JPA Performance](19-performance/jpa-performance.md)
-* [SQL Performance](19-performance/sql-performance.md)
-* [Oracle Performance](19-performance/oracle-performance.md)
-* [PostgreSQL Performance](19-performance/postgresql-performance.md)
-* [Caching](19-performance/caching.md)
-* [Connection Pooling](19-performance/connection-pooling.md)
-* [HikariCP](19-performance/hikaricp.md)
-* [Load Testing](19-performance/load-testing.md)
-* [Profiling](19-performance/profiling.md)
+1. Consolider les fondamentaux du génie logiciel.
+2. Structurer les connaissances Backend et Java / Spring.
+3. Compléter la documentation sur l'architecture, les API et les infrastructures.
+4. Enrichir les domaines Testing, Security et DevOps.
+5. Développer des modules Spring Boot réutilisables.
+6. Construire des applications de référence complètes.
+7. Améliorer continuellement les documentations, exemples et tests automatisés.
 
 ---
 
-# 20 — API Integration
-
-* [Feign Client](20-api-integration/feign.md)
-* [REST Client](20-api-integration/rest-client.md)
-* [WebClient](20-api-integration/webclient.md)
-* [Timeouts](20-api-integration/timeouts.md)
-* [Retries](20-api-integration/retries.md)
-* [Circuit Breaker](20-api-integration/circuit-breaker.md)
-* [Error Handling](20-api-integration/error-handling.md)
-* [External API Integration](20-api-integration/external-api.md)
-
----
-
-# 21 — Messaging & Async
-
-* [Asynchronous Processing](21-messaging/async.md)
-* [RabbitMQ](21-messaging/rabbitmq.md)
-* [Kafka](21-messaging/kafka.md)
-* [Message Ordering](21-messaging/message-ordering.md)
-* [Retry / Dead Letter](21-messaging/retry-dlq.md)
-* [Idempotent Consumers](21-messaging/idempotent-consumer.md)
-* [Event Driven Design](21-messaging/event-driven.md)
-
----
-
-# 22 — Database Migration
-
-* [Flyway](22-database-migration/flyway.md)
-* [Liquibase](22-database-migration/liquibase.md)
-* [Oracle Migration](22-database-migration/oracle-migration.md)
-* [PostgreSQL Migration](22-database-migration/postgresql-migration.md)
-* [DDL / DML](22-database-migration/ddl-dml.md)
-* [Data Migration](22-database-migration/data-migration.md)
-* [Rollback Strategy](22-database-migration/rollback.md)
-
----
-
-# 23 — Production Troubleshooting
-
-* [HTTP 400](23-troubleshooting/http-400.md)
-* [HTTP 401 / 403](23-troubleshooting/http-401-403.md)
-* [HTTP 404](23-troubleshooting/http-404.md)
-* [HTTP 500](23-troubleshooting/http-500.md)
-* [HTTP 502 / 503 / 504](23-troubleshooting/http-502-503-504.md)
-* [JVM Troubleshooting](23-troubleshooting/jvm.md)
-* [Database Connection Issues](23-troubleshooting/database.md)
-* [Oracle Errors](23-troubleshooting/oracle-errors.md)
-* [PostgreSQL Errors](23-troubleshooting/postgresql-errors.md)
-* [SSL / Certificate Errors](23-troubleshooting/ssl-errors.md)
-* [Docker Issues](23-troubleshooting/docker.md)
-* [Jenkins Issues](23-troubleshooting/jenkins.md)
-* [Linux Troubleshooting](23-troubleshooting/linux.md)
-* [Network Troubleshooting](23-troubleshooting/network.md)
-
----
-
-# 24 — Tech Lead
-
-This section focuses on the technical responsibilities beyond coding.
-
-* [Code Review Checklist](24-tech-lead/code-review.md)
-* [Architecture Review](24-tech-lead/architecture-review.md)
-* [Technical Debt](24-tech-lead/technical-debt.md)
-* [Definition of Done](24-tech-lead/definition-of-done.md)
-* [Coding Standards](24-tech-lead/coding-standards.md)
-* [Branching Strategy](24-tech-lead/branching-strategy.md)
-* [Release Management](24-tech-lead/release-management.md)
-* [Incident Management](24-tech-lead/incident-management.md)
-* [Production Readiness](24-tech-lead/production-readiness.md)
-* [Technical Decision Records](24-tech-lead/adr.md)
-* [Capacity Planning](24-tech-lead/capacity-planning.md)
-* [Scalability](24-tech-lead/scalability.md)
-* [Security Review](24-tech-lead/security-review.md)
-* [Performance Review](24-tech-lead/performance-review.md)
-
----
-
-# 25 — Useful Tools
-
-* [curl](25-tools/curl.md)
-* [jq](25-tools/jq.md)
-* [Postman](25-tools/postman.md)
-* [OpenSSL](25-tools/openssl.md)
-* [Netcat](25-tools/netcat.md)
-* [Telnet](25-tools/telnet.md)
-* [Git](25-tools/git.md)
-* [Maven](25-tools/maven.md)
-* [Docker](25-tools/docker.md)
-* [SQL Developer](25-tools/sql-developer.md)
-* [pgAdmin](25-tools/pgadmin.md)
-
----
-
-# 🎯 Objectives
-
-This repository aims to provide a practical reference for:
-
-* Full-Stack development
-* Backend engineering
-* Angular development
-* API design
-* Database development
-* DevOps and CI/CD
-* Cloud-ready application design
-* Security
-* Performance
-* Production troubleshooting
-* Software architecture
-* Technical leadership
-
----
-
-# 📈 Roadmap
-
-The repository is continuously evolving.
-
-New snippets, troubleshooting guides, architectural patterns, and production practices will be added over time.
-
----
-
-## 👨‍💻 Author
+# 👨‍💻 Auteur et responsable technique
 
 **Ahmed Kadmiri**
 
-Full-Stack Java / Angular Developer
-Backend & DevOps Engineering
+**Rôle :** Author & Technical Lead
 
-GitHub: [ahmedkadmiri-dev](https://github.com/ahmedkadmiri-dev)
+Domaines d'intérêt et d'expertise :
+
+- Software Engineering
+- Backend Development
+- Java & Spring Ecosystem
+- Software Architecture
+- API Engineering
+- DevOps & CI/CD
+- Security Engineering
+- Technical Leadership
+
+GitHub : [ahmedkadmiri-dev](https://github.com/ahmedkadmiri-dev)
 
 ---
 
 ## ⭐ Contribution
 
-This repository is primarily a personal technical knowledge base.
+Ce dépôt est une base de connaissances technique personnelle, évolutive et enrichie progressivement.
 
-Suggestions, improvements, and additional examples are welcome.
+Les suggestions, améliorations, corrections et nouvelles implémentations sont les bienvenues.
+
+**Construire, comprendre, partager et réutiliser les connaissances techniques.**
