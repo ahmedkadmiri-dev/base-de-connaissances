@@ -21,12 +21,6 @@
   <packaging>pom</packaging>
   <name>Spring Boot Parent</name>
 
-  <!-- Liste des modules agrégés -->
-  <modules>
-    <module>spring-boot-exception</module>
-    <module>spring-boot-application</module>
-  </modules>
-
   <!-- Propriétés centralisées -->
   <properties>
     <java.version>21</java.version>
