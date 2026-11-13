@@ -16,17 +16,6 @@ audit:
 
 Les identifiants de connexion sont injectés via des variables d'environnement.
 
-Le driver JDBC Oracle doit également être ajouté dans le `pom.xml` du microservice :
-
-```xml
-<dependency>
-    <groupId>com.oracle.database.jdbc</groupId>
-    <artifactId>ojdbc11</artifactId>
-    <version>${oracle.jdbc.version}</version>
-    <scope>runtime</scope>
-</dependency>
-```
-
 Le module `spring-boot-audit` fournit la configuration technique du DataSource, de l'EntityManager et du Repository. Le microservice fournit uniquement les paramètres de connexion et le driver JDBC adapté à la base utilisée.
 
 ### 4.2. Appel depuis un microservice
