@@ -36,7 +36,7 @@ public class BankController {
     @GetMapping("/referentiels/{type}")
     public ResponseEntity<List<ReferentielDto>> getReferentiels(
             @PathVariable String type) {
-        log.info("get référentiel {}", type);
+
         return ResponseEntity.ok(bankService.getReferentiels(type));
     }
 

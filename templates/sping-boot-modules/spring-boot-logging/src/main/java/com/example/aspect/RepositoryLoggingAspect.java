@@ -26,20 +26,22 @@ public class RepositoryLoggingAspect {
 
         LoggingProperties.Repository properties = loggingProperties.getRepository();
 
-        // Vérifier si la journalisation du repository est activée
         if (!properties.isEnabled()) {
             return joinPoint.proceed();
         }
 
         long startTime = System.currentTimeMillis();
 
-        String className = joinPoint.getTarget().getClass().getSimpleName();
+        String className = joinPoint.getSignature()
+                .getDeclaringType()
+                .getSimpleName();
+
         String methodName = joinPoint.getSignature().getName();
 
         String traceId = traceContextProvider.getTraceId();
         String idempotencyKey = traceContextProvider.getIdempotencyKey();
 
-        // Journalisation des arguments
+        // Repository START
         if (properties.isIncludeParameters()) {
             log.debug(
                     "REPOSITORY START | traceId={} | idempotencyKey={} | repository={} | method={} | arguments={}",
@@ -64,7 +66,7 @@ public class RepositoryLoggingAspect {
 
             long duration = System.currentTimeMillis() - startTime;
 
-            // Journalisation du résultat
+            // Repository SUCCESS
             if (properties.isIncludeResult()) {
                 log.debug(
                         "REPOSITORY SUCCESS | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms | result={}",

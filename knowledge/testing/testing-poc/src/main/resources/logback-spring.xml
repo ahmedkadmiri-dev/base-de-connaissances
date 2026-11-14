@@ -5,7 +5,7 @@
     <!-- SPRING BOOT PROPERTIES -->
     <!-- ========================================== -->
 
-    <!-- Nom de l'application récupéré automatiquement -->
+    <!-- Nom de l'application -->
     <springProperty scope="context"
                     name="LOG_FILE_NAME"
                     source="spring.application.name"
@@ -18,8 +18,16 @@
                     defaultValue="./logs"/>
 
     <!-- Pattern des logs -->
-    <property name="LOG_PATTERN"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
+    <springProperty scope="context"
+                    name="LOG_PATTERN"
+                    source="logging.pattern.console"
+                    defaultValue="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"/>
+
+    <!-- Niveau global de journalisation -->
+    <springProperty scope="context"
+                    name="LOG_LEVEL_ROOT"
+                    source="logging.level.root"
+                    defaultValue="INFO"/>
 
     <!-- ========================================== -->
     <!-- CONSOLE APPENDER -->
@@ -75,7 +83,7 @@
     <!-- ROOT LOGGER -->
     <!-- ========================================== -->
 
-    <root level="${LOG_LEVEL_ROOT:-INFO}">
+    <root level="${LOG_LEVEL_ROOT}">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="FILE"/>
     </root>
