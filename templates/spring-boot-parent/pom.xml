@@ -17,14 +17,18 @@
   <!-- Coordonnées de VOTRE parent -->
   <groupId>com.example</groupId>
   <artifactId>spring-boot-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
   <name>Spring Boot Parent</name>
+  <description>
+    Parent Maven commun centralisant les propriétés et les versions des dépendances partagées par les modules Spring Boot.
+  </description>
 
   <!-- Propriétés centralisées -->
   <properties>
     <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <modelmapper.version>3.2.0</modelmapper.version>
   </properties>
 
   <!--
@@ -38,11 +42,8 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>4.1.2</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <groupId>org.modelmapper</groupId>
+        <artifactId>modelmapper</artifactId>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -65,7 +66,7 @@
     <repository>
       <id>github</id>
       <name>GitHub Packages</name>
-      <url>https://maven.pkg.github.com/ahmedkadmiri-dev/snippet</url>
+      <url>https://maven.pkg.github.com/ahmedkadmiri-dev/base-de-connaissances</url>
     </repository>
   </distributionManagement>
 

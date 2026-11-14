@@ -5,26 +5,18 @@
 
 	<modelVersion>4.0.0</modelVersion>
 
+	<!-- Parent artefact pom  -->
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>4.1.2</version>
+		<groupId>com.example</groupId>
+		<artifactId>spring-boot-parent</artifactId>
+		<version>1.0.1</version>
 		<relativePath/>
 	</parent>
 
-	<groupId>com.example</groupId>
 	<artifactId>testing-poc</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<name>testing-poc</name>
 	<description>Testing POC</description>
-
-	<properties>
-		<java.version>21</java.version>
-		<maven.compiler.source>21</maven.compiler.source>
-		<maven.compiler.target>21</maven.compiler.target>
-		<maven.compiler.release>21</maven.compiler.release>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-	</properties>
 
 	<dependencies>
 
@@ -92,7 +84,7 @@
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>spring-boot-exception</artifactId>
-			<version>1.0.0</version>
+			<version>1.0.1</version>
 		</dependency>
 
 	</dependencies>
@@ -100,25 +92,12 @@
 	<repositories>
 		<repository>
 			<id>github</id>
-			<url>https://maven.pkg.github.com/ahmedkadmiri-dev/snippet</url>
+			<url>https://maven.pkg.github.com/ahmedkadmiri-dev/base-de-connaissances</url>
 		</repository>
 	</repositories>
 
 	<build>
 		<plugins>
-
-			<!-- Java Compiler -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>21</source>
-					<target>21</target>
-					<release>21</release>
-				</configuration>
-			</plugin>
-
-			<!-- Spring Boot -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
