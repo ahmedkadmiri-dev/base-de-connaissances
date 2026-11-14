@@ -11,5 +11,4 @@ class TestingPocApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
