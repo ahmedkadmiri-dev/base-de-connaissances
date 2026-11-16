@@ -1,0 +1,3 @@
+com.example.config.SecurityAutoConfiguration
+com.example.config.SecurityDisabledAutoConfiguration
+com.example.config.CorsAutoConfiguration

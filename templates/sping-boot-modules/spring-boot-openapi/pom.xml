@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Parent artefact pom  -->
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>spring-boot-parent</artifactId>
+    <version>1.0.6</version>
+    <relativePath/>
+  </parent>
+
+  <artifactId>spring-boot-openapi</artifactId>
+  <version>1.0.2</version>
+  <packaging>jar</packaging>
+
+  <name>Spring Boot OpenApi</name>
+  <description>Reusable OpenAPI documentation module for Spring Boot applications</description>
+
+  <dependencies>
+    <!-- OpenAPI 3 + Swagger UI -->
+    <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+    </dependency>
+    <!-- Spring Boot auto-configuration -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-autoconfigure</artifactId>
+    </dependency>
+    <!-- Configuration metadata -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- Réutilisation du modèle d'erreur commun ApiResponse -->
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>spring-boot-exception</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+  </dependencies>
+
+</project>

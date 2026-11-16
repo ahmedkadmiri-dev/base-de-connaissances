@@ -10,12 +10,12 @@
   <parent>
     <groupId>com.example</groupId>
     <artifactId>spring-boot-parent</artifactId>
-    <version>1.0.4</version>
+    <version>1.0.6</version>
     <relativePath/>
   </parent>
 
   <artifactId>spring-boot-logging</artifactId>
-  <version>1.0.17</version>
+  <version>1.1.2</version>
   <packaging>jar</packaging>
 
   <name>Spring Boot Logging</name>
@@ -45,17 +45,12 @@
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-tracing</artifactId>
+      <optional>true</optional>
     </dependency>
 
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <optional>true</optional>
-    </dependency>
-
-    <dependency>
-      <groupId>org.hibernate.orm</groupId>
-      <artifactId>hibernate-core</artifactId>
       <optional>true</optional>
     </dependency>
   </dependencies>

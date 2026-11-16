@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Parent artefact pom -->
+  <parent>
+    <groupId>com.example</groupId>
+    <artifactId>spring-boot-parent</artifactId>
+    <version>1.0.4</version>
+    <relativePath/>
+  </parent>
+
+  <artifactId>spring-boot-security</artifactId>
+  <version>1.0.5</version>
+  <packaging>jar</packaging>
+
+  <name>Spring Boot Security</name>
+  <description>Module de sécurisation des applications Spring Boot intégrant OAuth2, OpenID Connect (OIDC), JWT et l'authentification auprès de fournisseurs d'identité tels que Keycloak.</description>
+
+  <dependencies>
+    <!-- Spring Security -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <!-- OAuth2 Resource Server : validation JWT -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+    </dependency>
+    <!-- OAuth2 Client : appels vers des APIs sécurisées -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+    <!-- Configuration properties -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <!-- Réutilisation du modèle d'erreur commun ApiResponse -->
+    <dependency>
+      <groupId>com.example</groupId>
+      <artifactId>spring-boot-exception</artifactId>
+      <version>1.0.6</version>
+    </dependency>
+  </dependencies>
+
+</project>

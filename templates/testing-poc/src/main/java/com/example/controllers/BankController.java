@@ -1,5 +1,6 @@
 package com.example.controllers;
 
+import com.example.config.ApiSecured;
 import com.example.dtos.*;
 import com.example.services.BankService;
 import jakarta.validation.Valid;
@@ -46,6 +47,7 @@ public class BankController {
      * @param id identifiant du compte
      * @return informations du compte bancaire
      */
+    @ApiSecured
     @GetMapping("/accounts/{id}")
     public ResponseEntity<AccountDto> getAccount(
             @PathVariable Long id) {
@@ -59,6 +61,7 @@ public class BankController {
      * @param request données de création du compte
      * @return compte bancaire créé
      */
+    @ApiSecured
     @PostMapping("/accounts")
     public ResponseEntity<AccountDto> createAccount(
             @Valid @RequestBody CreateAccountRequest request) {
@@ -76,6 +79,7 @@ public class BankController {
      * @param request paramètres du calcul de crédit
      * @return résultat du calcul (mensualité, intérêts, montant total)
      */
+    @ApiSecured
     @PostMapping("/calculations/credit")
     public ResponseEntity<CreditCalculationResponse> calculateCredit(
             @Valid @RequestBody CreditCalculationRequest request) {
@@ -91,6 +95,7 @@ public class BankController {
      * @param request informations du virement
      * @return résultat de l'opération
      */
+    @ApiSecured
     @PostMapping("/transfers")
     public ResponseEntity<TransferResponse> executeTransfer(
             @Valid @RequestBody TransferRequest request) {

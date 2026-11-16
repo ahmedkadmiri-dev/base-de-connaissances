@@ -36,7 +36,8 @@ public class ControllerLoggingAspect {
             "proxy-authorization",
             "cookie",
             "set-cookie",
-            "x-api-key"
+            "x-api-key",
+            "idempotency-key"
     );
 
     private final TraceContextProvider traceContextProvider;
@@ -94,19 +95,19 @@ public class ControllerLoggingAspect {
 
             long duration = System.currentTimeMillis() - startTime;
 
-            Object responseDetails = properties.isIncludeResponseBody()
-                    ? sanitizer.sanitize(result, properties.getMaxBodyLength())
-                    : "DISABLED";
+            Map<String, String> responseHeaders = properties.isIncludeHeaders()
+                    ? extractResponseHeaders(response)
+                    : Collections.emptyMap();
 
             log.info(
-                    "HTTP REQUEST SUCCESS | traceId={} | idempotencyKey={} | controller={} | method={} | status={} | duration={}ms | response={}",
+                    "HTTP REQUEST SUCCESS | traceId={} | idempotencyKey={} | controller={} | method={} | status={} | duration={}ms | responseHeaders={}",
                     traceId,
                     idempotencyKey,
                     className,
                     methodName,
                     response != null ? response.getStatus() : "N/A",
                     duration,
-                    responseDetails
+                    sanitizer.sanitize(responseHeaders, properties.getMaxBodyLength())
             );
 
             return result;
@@ -153,7 +154,7 @@ public class ControllerLoggingAspect {
     }
 
     /**
-     * Extracts HTTP headers while excluding sensitive headers.
+     * Extracts HTTP request headers while excluding sensitive headers.
      */
     private Map<String, String> extractHeaders(HttpServletRequest request) {
 
@@ -166,6 +167,26 @@ public class ControllerLoggingAspect {
         Collections.list(request.getHeaderNames()).forEach(headerName -> {
             if (!SENSITIVE_HEADERS.contains(headerName.toLowerCase(Locale.ROOT))) {
                 headers.put(headerName, request.getHeader(headerName));
+            }
+        });
+
+        return headers;
+    }
+
+    /**
+     * Extracts HTTP response headers while excluding sensitive headers.
+     */
+    private Map<String, String> extractResponseHeaders(HttpServletResponse response) {
+
+        Map<String, String> headers = new LinkedHashMap<>();
+
+        if (response == null) {
+            return headers;
+        }
+
+        response.getHeaderNames().forEach(headerName -> {
+            if (!SENSITIVE_HEADERS.contains(headerName.toLowerCase(Locale.ROOT))) {
+                headers.put(headerName, response.getHeader(headerName));
             }
         });
 

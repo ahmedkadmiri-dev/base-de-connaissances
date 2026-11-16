@@ -1,10 +1,9 @@
 
 package com.example.utils;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.extern.slf4j.Slf4j;
-import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
+
 import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -15,8 +14,20 @@ import java.util.*;
 @Slf4j
 public class LoggingSanitizer {
 
-    private static final String LAZY_NOT_INITIALIZED = "[LAZY_NOT_INITIALIZED]";
     private static final String CIRCULAR_REFERENCE = "[CIRCULAR_REFERENCE]";
+    private static final String SENSITIVE_VALUE = "[MASKED]";
+
+    private static final Set<String> SENSITIVE_FIELDS = Set.of(
+            "password",
+            "passwd",
+            "token",
+            "accesstoken",
+            "refreshtoken",
+            "otp",
+            "secret",
+            "authorization",
+            "credentials"
+    );
 
     public String sanitize(Object value, int maxLength) {
 
@@ -41,16 +52,12 @@ public class LoggingSanitizer {
             return "null";
         }
 
-        if (isSimpleType(value.getClass())) {
+        Class<?> type = value.getClass();
+
+        if (isSimpleType(type)) {
             return String.valueOf(value);
         }
 
-        // Protection contre le chargement des proxies et collections LAZY
-        if (!Hibernate.isInitialized(value)) {
-            return LAZY_NOT_INITIALIZED;
-        }
-
-        // Détection des références circulaires
         if (visited.containsKey(value)) {
             return CIRCULAR_REFERENCE;
         }
@@ -58,7 +65,6 @@ public class LoggingSanitizer {
         visited.put(value, Boolean.TRUE);
 
         try {
-
             if (value instanceof Collection<?> collection) {
                 List<String> result = new ArrayList<>();
 
@@ -78,7 +84,7 @@ public class LoggingSanitizer {
                 return result.toString();
             }
 
-            if (value.getClass().isArray()) {
+            if (type.isArray()) {
                 List<String> result = new ArrayList<>();
 
                 for (int i = 0; i < Array.getLength(value); i++) {
@@ -104,8 +110,7 @@ public class LoggingSanitizer {
         for (Field field : getAllFields(value.getClass())) {
 
             if (Modifier.isStatic(field.getModifiers())
-                    || field.isSynthetic()
-                    || field.isAnnotationPresent(JsonIgnore.class)) {
+                    || field.isSynthetic()) {
                 continue;
             }
 
@@ -116,16 +121,15 @@ public class LoggingSanitizer {
 
                 Object fieldValue = field.get(value);
 
-                // Ignore les relations LAZY non initialisées
-                if (fieldValue != null && !Hibernate.isInitialized(fieldValue)) {
-                    fields.add(field.getName() + "=" + LAZY_NOT_INITIALIZED);
-                    continue;
-                }
+                String formattedValue = SENSITIVE_FIELDS.contains(
+                        field.getName().toLowerCase(Locale.ROOT))
+                        ? SENSITIVE_VALUE
+                        : format(fieldValue, visited);
 
-                fields.add(field.getName() + "="
-                        + format(fieldValue, visited));
+                fields.add(field.getName() + "=" + formattedValue);
 
             } catch (Exception exception) {
+                log.trace("Unable to access field {}", field.getName());
                 fields.add(field.getName() + "=[UNAVAILABLE]");
             }
         }

@@ -44,7 +44,7 @@ public class RepositoryLoggingAspect {
         // Repository START
         if (properties.isIncludeParameters()) {
             log.debug(
-                    "REPOSITORY START | traceId={} | idempotencyKey={} | repository={} | method={} | arguments={}",
+                    "REPOSITORY START | traceId={} | idempotencyKey={} | repository={} | method={} | input={}",
                     traceId,
                     idempotencyKey,
                     className,
@@ -67,26 +67,14 @@ public class RepositoryLoggingAspect {
             long duration = System.currentTimeMillis() - startTime;
 
             // Repository SUCCESS
-            if (properties.isIncludeResult()) {
-                log.debug(
-                        "REPOSITORY SUCCESS | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms | result={}",
-                        traceId,
-                        idempotencyKey,
-                        className,
-                        methodName,
-                        duration,
-                        sanitizer.sanitize(result, properties.getMaxValueLength())
-                );
-            } else {
-                log.debug(
-                        "REPOSITORY SUCCESS | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms",
-                        traceId,
-                        idempotencyKey,
-                        className,
-                        methodName,
-                        duration
-                );
-            }
+            log.debug(
+                    "REPOSITORY SUCCESS | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms",
+                    traceId,
+                    idempotencyKey,
+                    className,
+                    methodName,
+                    duration
+            );
 
             return result;
 
@@ -95,13 +83,14 @@ public class RepositoryLoggingAspect {
             long duration = System.currentTimeMillis() - startTime;
 
             log.error(
-                    "REPOSITORY ERROR | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms | exception={}",
+                    "REPOSITORY ERROR | traceId={} | idempotencyKey={} | repository={} | method={} | duration={}ms | exception={} | message={}",
                     traceId,
                     idempotencyKey,
                     className,
                     methodName,
                     duration,
-                    exception
+                    exception.getClass().getSimpleName(),
+                    exception.getMessage()
             );
 
             throw exception;
