@@ -67,7 +67,6 @@ public class SecurityAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean
     public CustomAuthenticationEntryPoint authenticationEntryPoint(
             ObjectMapper objectMapper
     ) {
@@ -75,10 +74,16 @@ public class SecurityAutoConfiguration {
     }
 
     @Bean
-    @ConditionalOnMissingBean
     public CustomAccessDeniedHandler accessDeniedHandler(
             ObjectMapper objectMapper
     ) {
         return new CustomAccessDeniedHandler(objectMapper);
+    }
+
+    @Bean
+    public JwtAuthenticationConverter jwtAuthenticationConverter(
+            JwtProperties properties
+    ) {
+        return new JwtAuthenticationConverter(properties);
     }
 }

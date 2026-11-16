@@ -15,7 +15,7 @@
   </parent>
 
   <artifactId>spring-boot-security</artifactId>
-  <version>1.0.5</version>
+  <version>1.0.7</version>
   <packaging>jar</packaging>
 
   <name>Spring Boot Security</name>

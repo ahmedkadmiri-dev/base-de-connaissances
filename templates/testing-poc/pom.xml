@@ -109,7 +109,7 @@
 		<dependency>
 			<groupId>com.example</groupId>
 			<artifactId>spring-boot-security</artifactId>
-			<version>1.0.5</version>
+			<version>1.0.7</version>
 		</dependency>
 	</dependencies>
 
