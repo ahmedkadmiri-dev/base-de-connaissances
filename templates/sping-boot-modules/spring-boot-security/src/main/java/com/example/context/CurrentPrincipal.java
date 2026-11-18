@@ -21,7 +21,7 @@ public final class CurrentPrincipal {
         return getClaim("preferred_username");
     }
 
-    public static Optional<String> getUserId() {
+    public static Optional<String> getSubject() {
         return getClaim("sub");
     }
 

@@ -37,7 +37,7 @@ public class SimulationService {
         modifierMontant(id, nouveauMontant);
 
         // Préparation de l'audit
-        AuditCommand command = new AuditCommand(
+        models.com.example.AuditCommand command = new models.com.example.AuditCommand(
                 "SIMULATION",
                 id.toString(),
                 AuditAction.UPDATED,
@@ -66,13 +66,13 @@ La méthode `record()` récupère automatiquement le contexte technique avant de
 
 ```java
 @Override
-public void record(AuditCommand command) {
+public void record(models.com.example.AuditCommand command) {
 
     // 1. Récupération du contexte technique
-    AuditContext context = contextProvider.getCurrentContext();
+    models.com.example.AuditContext context = contextProvider.getCurrentContext();
 
     // 2. Construction de l'événement complet
-    AuditEvent event = new AuditEvent(
+    models.com.example.AuditEvent event = new models.com.example.AuditEvent(
             UUID.randomUUID(),
             command.aggregateType(),
             command.aggregateId(),
@@ -104,9 +104,9 @@ Le `AuditContextProvider` centralise la récupération des métadonnées :
 | `traceId` | Micrometer Tracing |
 
 ```java
-public AuditContext getCurrentContext() {
+public models.com.example.AuditContext getCurrentContext() {
 
-    return new AuditContext(
+    return new models.com.example.AuditContext(
             getCurrentActor(),
             applicationName,
             getCurrentTraceId()
