@@ -1,4 +1,4 @@
-package com.example.config;
+package com.example.properties;
 
 import lombok.Getter;
 import lombok.Setter;

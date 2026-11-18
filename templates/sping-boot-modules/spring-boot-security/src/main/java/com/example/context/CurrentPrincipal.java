@@ -7,9 +7,9 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import java.util.Map;
 import java.util.Optional;
 
-public final class CurrentUser {
+public final class CurrentPrincipal {
 
-    private CurrentUser() {
+    private CurrentPrincipal() {
     }
 
     private static Optional<Authentication> getAuthentication() {
@@ -18,8 +18,7 @@ public final class CurrentUser {
     }
 
     public static Optional<String> getUsername() {
-        return getAuthentication()
-                .map(Authentication::getName);
+        return getClaim("preferred_username");
     }
 
     public static Optional<String> getUserId() {
@@ -38,13 +37,5 @@ public final class CurrentUser {
                 .filter(JwtAuthenticationToken.class::isInstance)
                 .map(JwtAuthenticationToken.class::cast)
                 .map(authentication -> authentication.getToken().getClaims());
-    }
-
-    public static boolean hasRole(String role) {
-        return getAuthentication()
-                .map(Authentication::getAuthorities)
-                .stream()
-                .flatMap(java.util.Collection::stream)
-                .anyMatch(authority -> authority.getAuthority().equals("ROLE_" + role));
     }
 }

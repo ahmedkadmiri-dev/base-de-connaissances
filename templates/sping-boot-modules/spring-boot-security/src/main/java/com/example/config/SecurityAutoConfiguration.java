@@ -3,7 +3,8 @@ package com.example.config;
 import com.example.handler.CustomAccessDeniedHandler;
 import com.example.handler.CustomAuthenticationEntryPoint;
 import com.example.jwt.JwtAuthenticationConverter;
-import com.example.jwt.JwtProperties;
+import com.example.properties.JwtProperties;
+import com.example.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
@@ -11,11 +12,13 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @AutoConfiguration
 @RequiredArgsConstructor
+@EnableMethodSecurity
 @EnableConfigurationProperties({
         SecurityProperties.class,
         JwtProperties.class
@@ -85,5 +88,11 @@ public class SecurityAutoConfiguration {
             JwtProperties properties
     ) {
         return new JwtAuthenticationConverter(properties);
+    }
+
+    @Bean
+    @ConditionalOnMissingBean(ObjectMapper.class)
+    public ObjectMapper objectMapper() {
+        return new ObjectMapper();
     }
 }
