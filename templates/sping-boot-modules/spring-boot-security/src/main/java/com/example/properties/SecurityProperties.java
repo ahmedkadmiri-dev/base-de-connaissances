@@ -15,6 +15,8 @@ public class SecurityProperties {
 
     private List<String> publicEndpoints = new ArrayList<>();
 
+    private String provider = "KEYCLOAK";
+
     private Cors cors = new Cors();
 
     @Getter

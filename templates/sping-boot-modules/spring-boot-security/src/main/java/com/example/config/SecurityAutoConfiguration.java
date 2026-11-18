@@ -1,3 +1,4 @@
+
 package com.example.config;
 
 import com.example.handler.CustomAccessDeniedHandler;
@@ -6,7 +7,9 @@ import com.example.jwt.JwtAuthenticationConverter;
 import com.example.properties.JwtProperties;
 import com.example.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.json.JsonMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -17,7 +20,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
 @AutoConfiguration
-@RequiredArgsConstructor
 @EnableMethodSecurity
 @EnableConfigurationProperties({
         SecurityProperties.class,
@@ -71,16 +73,18 @@ public class SecurityAutoConfiguration {
 
     @Bean
     public CustomAuthenticationEntryPoint authenticationEntryPoint(
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            SecurityProperties properties
     ) {
-        return new CustomAuthenticationEntryPoint(objectMapper);
+        return new CustomAuthenticationEntryPoint(objectMapper, properties);
     }
 
     @Bean
     public CustomAccessDeniedHandler accessDeniedHandler(
-            ObjectMapper objectMapper
+            ObjectMapper objectMapper,
+            SecurityProperties properties
     ) {
-        return new CustomAccessDeniedHandler(objectMapper);
+        return new CustomAccessDeniedHandler(objectMapper, properties);
     }
 
     @Bean
@@ -93,6 +97,9 @@ public class SecurityAutoConfiguration {
     @Bean
     @ConditionalOnMissingBean(ObjectMapper.class)
     public ObjectMapper objectMapper() {
-        return new ObjectMapper();
+        return JsonMapper.builder()
+                .addModule(new JavaTimeModule())
+                .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
+                .build();
     }
 }

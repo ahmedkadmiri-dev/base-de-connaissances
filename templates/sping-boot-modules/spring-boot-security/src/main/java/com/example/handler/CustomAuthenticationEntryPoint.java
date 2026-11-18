@@ -1,6 +1,7 @@
 package com.example.handler;
 
 import com.example.model.ErrorResponse;
+import com.example.properties.SecurityProperties;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -19,6 +20,8 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
 
     private final ObjectMapper objectMapper;
 
+    private final SecurityProperties properties;
+
     @Override
     public void commence(
             HttpServletRequest request,
@@ -32,7 +35,7 @@ public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint 
                 .message("Authentification requise")
                 .details(Map.of(
                         "source", "SPRING_SECURITY",
-                        "provider", "KEYCLOAK"
+                        "provider", properties.getProvider()
                 ))
                 .build();
 
