@@ -60,14 +60,12 @@
   <build>
     <pluginManagement>
       <plugins>
-        <!-- Config par défaut héritée, surchargeable par les enfants -->
+        <plugin>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <!-- Plugins réellement exécutés pour TOUS les modules -->
-      <!-- ⚠ Ne PAS mettre spring-boot-maven-plugin ici :
-           il s'exécuterait aussi sur les librairies. -->
-    </plugins>
   </build>
 
   <distributionManagement>

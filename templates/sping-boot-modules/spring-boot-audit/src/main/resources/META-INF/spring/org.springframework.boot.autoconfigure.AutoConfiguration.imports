@@ -1,0 +1,2 @@
+com.example.config.AuditAutoConfiguration
+com.example.config.AuditDataSourceConfiguration

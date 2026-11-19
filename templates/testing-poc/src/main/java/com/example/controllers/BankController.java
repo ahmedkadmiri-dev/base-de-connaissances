@@ -1,7 +1,9 @@
 package com.example.controllers;
 
+import com.example.annotations.Auditable;
 import com.example.config.ApiSecured;
 import com.example.dtos.*;
+import com.example.enums.AuditAction;
 import com.example.services.BankService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -34,6 +36,11 @@ public class BankController {
      * @param type type du référentiel (CURRENCY, ACCOUNT_STATUS...)
      * @return liste des référentiels correspondants
      */
+    @Auditable(
+            action = AuditAction.CONSULTED,
+            aggregateType = "ACCOUNT",
+            aggregateId = "type"
+    )
     @GetMapping("/referentiels/{type}")
     public ResponseEntity<List<ReferentielDto>> getReferentiels(
             @PathVariable String type) {

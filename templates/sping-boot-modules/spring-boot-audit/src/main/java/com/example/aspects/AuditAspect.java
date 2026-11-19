@@ -30,7 +30,7 @@ public class AuditAspect {
             auditService.record(new AuditCommand(
                     auditable.aggregateType(),
                     auditable.aggregateId(),
-                    AuditAction.valueOf(auditable.action()),
+                    auditable.action(),
                     null,
                     null,
                     AuditStatus.SUCCESS
@@ -43,7 +43,7 @@ public class AuditAspect {
             auditService.record(new AuditCommand(
                     auditable.aggregateType(),
                     auditable.aggregateId(),
-                    AuditAction.valueOf(auditable.action()),
+                    auditable.action(),
                     null,
                     null,
                     AuditStatus.FAILURE

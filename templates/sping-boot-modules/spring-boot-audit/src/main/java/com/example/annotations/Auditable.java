@@ -1,5 +1,7 @@
 package com.example.annotations;
 
+import com.example.enums.AuditAction;
+
 import java.lang.annotation.*;
 
 @Target(ElementType.METHOD)
@@ -7,7 +9,7 @@ import java.lang.annotation.*;
 @Documented
 public @interface Auditable {
 
-    String action();
+    AuditAction action();
 
     String aggregateType();
 

@@ -1,5 +1,6 @@
 package com.example.entities;
 
+import com.example.enums.AuditStatus;
 import jakarta.persistence.*;
 import lombok.*;
 import java.time.Instant;

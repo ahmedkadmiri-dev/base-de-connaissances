@@ -8,16 +8,16 @@ import com.zaxxer.hikari.HikariDataSource;
 import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.jpa.EntityManagerFactoryBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
-@Configuration(proxyBeanMethods = false)
+@AutoConfiguration
 @EnableConfigurationProperties(AuditProperties.class)
 @EnableJpaRepositories(
         basePackageClasses = AuditEventRepository.class,
@@ -36,6 +36,7 @@ public class AuditDataSourceConfiguration {
         HikariDataSource dataSource = new HikariDataSource();
 
         dataSource.setJdbcUrl(properties.getUrl());
+        dataSource.setDriverClassName(properties.getDriverClassName());
         dataSource.setUsername(properties.getUsername());
         dataSource.setPassword(properties.getPassword());
 

@@ -15,7 +15,7 @@
   </parent>
 
   <artifactId>spring-boot-audit</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.8</version>
   <packaging>jar</packaging>
 
   <dependencies>
