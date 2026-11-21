@@ -5,6 +5,8 @@ public record AuditContext(
         String actorUsername,
         String source,
         String traceId,
-        String idempotencyKey
+        String idempotencyKey,
+        String callerIpAddress,
+        String clientIpAddress
 ) {
 }

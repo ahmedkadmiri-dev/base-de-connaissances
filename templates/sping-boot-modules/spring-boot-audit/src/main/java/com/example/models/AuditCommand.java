@@ -12,9 +12,9 @@ public record AuditCommand(
 
     AuditAction action,
 
-    Map<String, Object> before,
+    Object before,
 
-    Map<String, Object> after,
+    Object after,
 
     AuditStatus status
 

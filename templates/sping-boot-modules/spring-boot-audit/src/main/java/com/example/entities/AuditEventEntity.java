@@ -32,6 +32,12 @@ public class AuditEventEntity {
     @Column(name = "ACTION", nullable = false, length = 50)
     private String action;
 
+    @Column(name = "CLIENT_IP_ADDRESS", length = 45)
+    private String clientIpAddress;
+
+    @Column(name = "CALLER_IP_ADDRESS", length = 45)
+    private String callerIpAddress;
+
     @Column(name = "ACTOR_ID", length = 150)
     private String actorId;
 

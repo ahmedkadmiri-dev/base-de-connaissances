@@ -13,5 +13,7 @@ public @interface Auditable {
 
     String aggregateType();
 
-    String aggregateId();
+    String aggregateId() default "";
+
+    String aggregateIdParam() default "";
 }

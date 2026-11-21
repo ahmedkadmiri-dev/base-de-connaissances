@@ -38,8 +38,8 @@ public class BankController {
      */
     @Auditable(
             action = AuditAction.CONSULTED,
-            aggregateType = "ACCOUNT",
-            aggregateId = "type"
+            aggregateType = "REFERENTIEL",
+            aggregateIdParam = "type"
     )
     @GetMapping("/referentiels/{type}")
     public ResponseEntity<List<ReferentielDto>> getReferentiels(
@@ -54,6 +54,11 @@ public class BankController {
      * @param id identifiant du compte
      * @return informations du compte bancaire
      */
+    @Auditable(
+            action = AuditAction.CONSULTED,
+            aggregateType = "ACCOUNT",
+            aggregateIdParam = "id"
+    )
     @ApiSecured
     @GetMapping("/accounts/{id}")
     public ResponseEntity<AccountDto> getAccount(
@@ -69,6 +74,10 @@ public class BankController {
      * @return compte bancaire créé
      */
     @ApiSecured
+    @Auditable(
+            action = AuditAction.CREATED,
+            aggregateType = "ACCOUNT"
+    )
     @PostMapping("/accounts")
     public ResponseEntity<AccountDto> createAccount(
             @Valid @RequestBody CreateAccountRequest request) {
